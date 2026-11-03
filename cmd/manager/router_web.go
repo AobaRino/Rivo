@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"crypto/rand"
 	"crypto/rsa"
@@ -137,23 +138,27 @@ func spaHandler(dir string) http.Handler {
 		}
 		if info, err := os.Stat(path); err == nil && !info.IsDir() {
 			if strings.HasPrefix(r.URL.Path, "/assets/") {
+				// Vite's assets directory contains content-fingerprinted files.
 				w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+				files.ServeHTTP(w, r)
+				return
 			}
-			files.ServeHTTP(w, r)
-			return
+		} else {
+			if strings.HasPrefix(r.URL.Path, "/api/") || strings.HasPrefix(r.URL.Path, "/assets/") || filepath.Ext(path) != "" {
+				http.NotFound(w, r)
+				return
+			}
+			path = filepath.Join(dir, "index.html")
 		}
-		if strings.HasPrefix(r.URL.Path, "/api/") || strings.HasPrefix(r.URL.Path, "/assets/") || filepath.Ext(path) != "" {
-			http.NotFound(w, r)
-			return
-		}
-		b, e := os.ReadFile(filepath.Join(dir, "index.html"))
+		b, e := os.ReadFile(path)
 		if e != nil {
 			http.Error(w, "页面尚未构建", 503)
 			return
 		}
 		w.Header().Set("Cache-Control", "no-store")
-		w.Header().Set("Content-Type", "text/html; charset=utf-8")
-		_, _ = w.Write(b)
+		// Reproducible APK builds reuse a fixed mtime even when content changes.
+		// Do not use that timestamp to validate HTML or other stable resource URLs.
+		http.ServeContent(w, r, filepath.Base(path), time.Time{}, bytes.NewReader(b))
 	})
 }
 

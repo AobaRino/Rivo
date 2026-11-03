@@ -2,7 +2,7 @@
 
 基于 React、TypeScript 和 Go 的 Mihomo 配置与运行管理面板。使用独立 Web 服务，LuCI 提供入口、总开关、开机启动和端口设置。
 
-项目仓库：[AobaRino/Rivo](https://github.com/AobaRino/Rivo)。项目原名 Mihomo Manager；当前源码已更名为 Rivo，OpenWrt 包修订为 `0.1.0-r17`。
+项目仓库：[AobaRino/Rivo](https://github.com/AobaRino/Rivo)。项目原名 Mihomo Manager；当前源码已更名为 Rivo，OpenWrt 包修订为 `0.1.0-r18`。
 
 ## 功能
 
