@@ -1,8 +1,5 @@
-.is-home .topbar {
-  height: 54px;
-}
 .is-home > main {
-  padding: 22px 28px;
+  padding-bottom: 28px;
 }
 .is-home .page-heading {
   margin-bottom: 18px;
@@ -19,13 +16,12 @@
 .home-overview {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  max-width: 1400px;
+  gap: 20px;
 }
 .home-panel {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: var(--radius);
   padding: 22px;
   min-width: 0;
 }
@@ -60,13 +56,11 @@
   height: 10px;
 }
 .home-dot.off {
-  background: #9aa6b2;
+  background: var(--text-muted);
 }
-.home-dot.warning {
-  background: #c28a32;
-}
+.home-dot.warning,
 .home-dot.pending {
-  background: #b7791f;
+  background: var(--text-warning);
 }
 .home-muted {
   font-size: 13px;
@@ -121,27 +115,28 @@
   color: var(--text-muted);
 }
 .home-control-error {
-  background: #fff3f0;
+  background: var(--danger-bg);
   color: var(--text-danger);
   padding: 12px 14px;
   margin-top: 18px;
-  border-radius: 7px;
+  border-radius: var(--control-radius);
   font-size: 14px;
   line-height: 1.6;
 }
 .home-metrics {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  padding: 0 3px;
-  gap: 16px;
-  margin-top: 5px;
+  padding: 18px 0;
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 .home-metric {
-  border-left: 1px solid #dfe6ec;
-  padding-left: 22px;
+  border-left: 1px solid var(--border);
+  padding: 0 22px;
 }
 .home-metric:first-child {
-  padding-left: 0;
   border: 0;
 }
 .home-metric > span {
@@ -153,8 +148,8 @@
 }
 .home-metric strong {
   display: block;
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 27px;
+  font-weight: 600;
   margin-top: 6px;
   font-variant-numeric: tabular-nums;
 }
@@ -198,19 +193,19 @@
   display: inline-flex;
   align-items: center;
   padding: 3px 7px;
-  border-radius: 4px;
+  border-radius: 7px;
   font-size: 12px;
   line-height: 1.4;
-  color: #23765e;
-  background: #eaf5ef;
+  color: var(--accent);
+  background: var(--mint);
   white-space: nowrap;
 }
 .home-badge.pending {
-  background: #fff3df;
-  color: #97661e;
+  background: var(--warning-bg);
+  color: var(--text-warning);
 }
 .home-badge.neutral {
-  background: #f0f3f5;
+  background: var(--surface-muted);
   color: var(--text-muted);
 }
 .home-two-columns {
@@ -313,7 +308,7 @@
   gap: 13px;
   padding: 14px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--control-radius);
 }
 .profile-row > svg {
   color: var(--text-muted);
@@ -334,8 +329,8 @@
   margin-top: 5px;
 }
 .profile-row.current {
-  border-color: #b9dace;
-  background: #fbfdfc;
+  border-color: var(--accent);
+  background: var(--mint);
 }
 .profile-form textarea {
   min-height: 160px;
@@ -385,7 +380,6 @@
   }
   .home-metric:nth-child(3) {
     border: 0;
-    padding-left: 0;
   }
   .home-config-picker select {
     flex-basis: 100%;

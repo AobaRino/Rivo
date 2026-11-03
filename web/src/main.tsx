@@ -4,7 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { AuthBoundary } from './features/auth/AuthBoundary'
 import { ErrorBoundary } from './app/ErrorBoundary'
+import { initializeAppearance } from './app/Appearance'
 import './styles.css'
+initializeAppearance()
 const App = lazy(() => import('./App'))
 const queryClient = new QueryClient({
   defaultOptions: { queries: { retry: 1, staleTime: 3000, refetchOnWindowFocus: true } },

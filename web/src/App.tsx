@@ -14,6 +14,7 @@ import type { ReactNode } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { useQuery } from '@tanstack/react-query'
 import { SignOut } from './features/auth/AuthBoundary'
+import { AppearanceToggle } from './app/Appearance'
 import {
   Activity,
   ArrowDown,
@@ -1015,7 +1016,7 @@ export default function App() {
             <span className="local-address">
               <span
                 className="status-dot"
-                style={coreConnectionError ? { background: '#c58a3b' } : undefined}
+                style={coreConnectionError ? { background: 'var(--text-warning)' } : undefined}
               />
               {coreConnectionError
                 ? '连接待恢复'
@@ -1027,6 +1028,7 @@ export default function App() {
             <Badge tone="blue">
               {managed ? '托管内核' : routerMode ? '仅配置管理' : '模拟环境'}
             </Badge>
+            <AppearanceToggle />
             <SignOut onError={fail} />
           </div>
         </header>

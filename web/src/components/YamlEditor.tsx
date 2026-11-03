@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { monaco } from '../lib/yamlLanguage'
+import { applyMonacoAppearance, monaco, monacoThemeName } from '../lib/yamlLanguage'
 import { useSchemaSnapshot } from '../lib/schemaStore'
+import { getAppearance, useAppearance } from '../app/Appearance'
 import './yaml-editor.css'
 
 // Models only need unique names within this Monaco instance. Router HTTP pages
@@ -20,6 +21,7 @@ export default function YamlEditor({
   ariaLabel?: string
   schemaContext?: 'config' | 'proxy'
 }) {
+  const appearance = useAppearance()
   const schema = useSchemaSnapshot()
   const container = useRef<HTMLDivElement>(null)
   const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null)
@@ -32,13 +34,17 @@ export default function YamlEditor({
   const [showProblems, setShowProblems] = useState(false)
 
   useEffect(() => {
+    applyMonacoAppearance(appearance)
+  }, [appearance])
+
+  useEffect(() => {
     if (!container.current) return
     const uri = monaco.Uri.parse(`inmemory://mihomo/${schemaContext}-${++modelSequence}.yaml`)
     const model = monaco.editor.createModel(currentValue.current, 'yaml', uri)
     model.updateOptions({ tabSize: 2, insertSpaces: true })
     const editor = monaco.editor.create(container.current, {
       model,
-      theme: 'mihomo-light',
+      theme: monacoThemeName(getAppearance()),
       ariaLabel,
       // Use the established textarea input path across embedded browsers and IMEs.
       editContext: false,

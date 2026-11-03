@@ -2,8 +2,6 @@
 :root {
   --control-height: 40px;
   --control-height-small: 34px;
-  --control-radius: 7px;
-  --control-border: #d6dee7;
   --dialog-padding: 24px;
 }
 button,
@@ -36,7 +34,7 @@ button:disabled {
   padding: 0 12px;
   border: 1px solid var(--control-border);
   border-radius: var(--control-radius);
-  background: #fff;
+  background: var(--surface);
   color: var(--text-primary);
   font-size: 14px;
   transition:
@@ -44,7 +42,7 @@ button:disabled {
     box-shadow 0.15s;
 }
 :where(input, select, textarea):hover:not(:disabled) {
-  border-color: #a9bbb5;
+  border-color: var(--accent);
 }
 :where(input, select, textarea):focus {
   border-color: var(--accent);
@@ -54,7 +52,7 @@ button:disabled {
 }
 :where(input, select, textarea):disabled {
   color: var(--text-muted);
-  background: #eef1f4;
+  background: var(--surface-muted);
 }
 :where(textarea) {
   height: auto;
@@ -83,7 +81,7 @@ button:disabled {
   padding: 0 13px;
   border: 1px solid var(--control-border);
   border-radius: var(--control-radius);
-  background: #fff;
+  background: var(--surface);
   color: var(--text-secondary);
   font-size: 14px;
   white-space: nowrap;
@@ -94,11 +92,11 @@ button:disabled {
     box-shadow 0.15s;
 }
 .button:hover:not(:disabled) {
-  background: #f4f8f6;
-  border-color: #a9bbb5;
+  background: var(--control-hover);
+  border-color: var(--accent);
 }
 .button.primary {
-  color: #fff;
+  color: var(--on-accent);
   background: var(--accent);
   border-color: var(--accent);
 }
@@ -116,13 +114,13 @@ button:disabled {
   padding: 0;
 }
 .button.danger-button {
-  color: #fff;
-  background: var(--text-danger);
+  color: var(--text-danger);
+  background: var(--danger-bg);
   border-color: var(--text-danger);
 }
 .button.danger-button:hover:not(:disabled) {
-  background: #8c3029;
-  border-color: #8c3029;
+  background: color-mix(in srgb, var(--danger-bg) 85%, var(--text-danger));
+  border-color: var(--text-danger);
 }
 .icon-button {
   display: inline-flex;
@@ -136,14 +134,14 @@ button:disabled {
   color: var(--text-secondary);
 }
 .icon-button:hover:not(:disabled) {
-  background: #eff5f2;
+  background: var(--control-hover);
 }
 :is(.icon-button, .button.icon).danger {
   color: var(--text-danger);
 }
 :is(.icon-button, .button.icon).danger:hover:not(:disabled) {
-  background: #fff2ef;
-  border-color: #e7b8b2;
+  background: var(--danger-bg);
+  border-color: var(--text-danger);
 }
 .text-button {
   display: inline-flex;
@@ -158,8 +156,8 @@ button:disabled {
   text-decoration: underline;
 }
 :is(.button, .icon-button, .text-button, .segmented button):disabled {
-  color: #697586;
-  background: #eef1f4;
+  color: var(--text-muted);
+  background: var(--surface-muted);
   border-color: var(--control-border);
   opacity: 1;
   box-shadow: none;
@@ -169,7 +167,7 @@ button:disabled {
   display: flex;
   gap: 3px;
   padding: 3px;
-  background: #f5f7f9;
+  background: var(--surface-muted);
   border: 1px solid var(--control-border);
   border-radius: var(--control-radius);
 }
@@ -182,14 +180,14 @@ button:disabled {
   gap: 4px;
   height: var(--control-height-small);
   padding: 0 8px;
-  border-radius: 5px;
+  border-radius: calc(var(--control-radius) - 3px);
   color: var(--text-secondary);
   font-size: 14px;
 }
 .segmented button[aria-pressed='true']:not(:disabled) {
-  background: #fff;
+  background: var(--surface);
   color: var(--accent);
-  box-shadow: 0 1px 4px #23374814;
+  box-shadow: var(--card-shadow);
   font-weight: 600;
 }
 .action-row {
@@ -288,7 +286,7 @@ button:disabled {
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: #1c2e4255;
+  background: var(--overlay);
   animation: fade-in 0.15s ease;
 }
 .modal {
@@ -298,9 +296,9 @@ button:disabled {
   max-width: 100%;
   max-height: 90dvh;
   overflow: hidden;
-  background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 16px 70px #20334525;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--dialog-shadow);
   outline: none;
 }
 .modal-medium {
@@ -348,7 +346,7 @@ button:disabled {
   gap: 10px;
   padding: 16px var(--dialog-padding);
   border-top: 1px solid var(--border);
-  background: #fcfdfd;
+  background: var(--surface-muted);
   flex: 0 0 auto;
 }
 .modal-actions > .modal-hint {

@@ -6,6 +6,12 @@ Rivo 是独立 React + TypeScript 应用。生产构建由 Go 的 HTTPS 服务�
 
 前端使用 React 19、TypeScript、Vite、React Router 和 TanStack Query。路由使用真实路径，支持直接打开、刷新和浏览器前进后退。登录、请求传输、通用界面组件与配置工作空间分离。编辑中的 YAML 独立于服务器查询缓存，轮询不覆盖未保存的修改。Monaco、monaco-yaml、原生 YAML 文档修改和 Zashboard 保留。
 
+## 外观
+
+页面沿用路由器 Mori 主题的灰绿配色、字体和控件尺度，在 `web/src/styles/theme.css` 集中定义浅色与深色变量。通用控件在 `styles/controls.css`，页面样式复用这些变量；CodeMirror 和 Monaco 也读取同一组颜色。切换主题不重新创建编辑模型，不丢失未保存内容。
+
+初次打开跟随系统外观，右上角可手动切换并保存到浏览器的 `rivo-appearance` 偏好；登录页同样可切换。该偏好按站点保存，与不同端口或域名的 LuCI 独立。
+
 ## 进程与权限
 
 项目已更名为 Rivo。以下 `mihomo-manager` 服务、命令、路径、UCI/ubus 标识和 `mihomomgr` 用户保留为升级兼容接口；产品更名不迁移既有配置，也不改变运行权限。Mihomo 继续作为代理内核。

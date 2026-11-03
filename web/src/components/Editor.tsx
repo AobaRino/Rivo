@@ -1,11 +1,11 @@
 import { lazy, Suspense, useEffect, useRef } from 'react'
-import { EditorState } from '@codemirror/state'
+import { Compartment, EditorState } from '@codemirror/state'
 import { EditorView, keymap } from '@codemirror/view'
 import { basicSetup } from 'codemirror'
 import { yaml } from '@codemirror/lang-yaml'
 import { indentWithTab } from '@codemirror/commands'
-import { HighlightStyle, syntaxHighlighting } from '@codemirror/language'
-import { tags } from '@lezer/highlight'
+import { getAppearance, useAppearance } from '../app/Appearance'
+import { codeMirrorAppearance } from './editorTheme'
 
 const YamlEditor = lazy(() => import('./YamlEditor'))
 
@@ -18,34 +18,6 @@ type EditorProps = {
   schemaContext?: 'config' | 'proxy'
 }
 
-export const theme = EditorView.theme({
-  '&': { fontSize: '12px', backgroundColor: '#fbfcfd', color: '#33445a', height: '100%' },
-  '.cm-scroller': {
-    overflow: 'auto',
-    fontFamily: '"Cascadia Code", Consolas, monospace',
-    lineHeight: '1.8',
-  },
-  '.cm-content': { padding: '16px 0', caretColor: '#16856c' },
-  '.cm-gutters': {
-    backgroundColor: '#fbfcfd',
-    color: '#a7b1bd',
-    border: 'none',
-    paddingRight: '8px',
-  },
-  '.cm-activeLine, .cm-activeLineGutter': { backgroundColor: '#eff4f3' },
-  '&.cm-focused': { outline: 'none' },
-  '.cm-selectionBackground, &.cm-focused .cm-selectionBackground': { backgroundColor: '#cde9df' },
-})
-export const highlight = syntaxHighlighting(
-  HighlightStyle.define([
-    { tag: tags.comment, color: '#95a0ad' },
-    { tag: tags.propertyName, color: '#456d97' },
-    { tag: tags.string, color: '#438b71' },
-    { tag: tags.number, color: '#ad7440' },
-    { tag: tags.bool, color: '#9273b2' },
-    { tag: tags.meta, color: '#8e9ba9' },
-  ]),
-)
 export function Editor(props: EditorProps) {
   if (props.readOnly) return <PreviewEditor {...props} />
   return (
@@ -68,6 +40,8 @@ function PreviewEditor({
   readOnly = false,
   ariaLabel,
 }: EditorProps) {
+  const appearance = useAppearance()
+  const themeCompartment = useRef(new Compartment())
   const container = useRef<HTMLDivElement>(null)
   const view = useRef<EditorView | null>(null)
   const listener = useRef(onChange)
@@ -82,8 +56,7 @@ function PreviewEditor({
         extensions: [
           basicSetup,
           yaml(),
-          theme,
-          highlight,
+          themeCompartment.current.of(codeMirrorAppearance(getAppearance())),
           keymap.of([indentWithTab]),
           EditorState.readOnly.of(readOnly),
           EditorView.editable.of(!readOnly),
@@ -103,6 +76,11 @@ function PreviewEditor({
       view.current = null
     }
   }, [readOnly])
+  useEffect(() => {
+    view.current?.dispatch({
+      effects: themeCompartment.current.reconfigure(codeMirrorAppearance(appearance)),
+    })
+  }, [appearance])
   useEffect(() => {
     const v = view.current
     if (!v || v.state.doc.toString() === value) return

@@ -4,7 +4,27 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/src/assets/rivo.svg?no-inline" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#eef5f2" />
+    <meta name="theme-color" content="#f4f6f5" />
+    <script>
+      // Set the first paint before the stylesheet and application bundle arrive.
+      ;(() => {
+        let stored
+        try {
+          stored = localStorage.getItem('rivo-appearance')
+        } catch {}
+        const theme =
+          stored === 'light' || stored === 'dark'
+            ? stored
+            : matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+        document.documentElement.dataset.theme = theme
+        document.documentElement.style.colorScheme = theme
+        document.documentElement.style.backgroundColor = theme === 'dark' ? '#121817' : '#f4f6f5'
+        document.querySelector('meta[name="theme-color"]').content =
+          theme === 'dark' ? '#121817' : '#f4f6f5'
+      })()
+    </script>
     <meta name="description" content="Rivo · 网络代理配置、节点订阅与运行管理" />
     <title>Rivo</title>
   </head>

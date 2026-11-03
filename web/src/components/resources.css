@@ -15,7 +15,7 @@
 }
 .dashboard-versions dd {
   margin: 8px 0 0;
-  color: #445e71;
+  color: var(--text-primary);
   font-size: 15px;
   overflow-wrap: anywhere;
 }
@@ -29,10 +29,10 @@
   align-items: center;
   gap: 10px;
   font-size: 13px;
-  color: #4d6173;
+  color: var(--text-primary);
 }
 .dashboard-auto-check input {
-  accent-color: #198976;
+  accent-color: var(--accent);
 }
 .dashboard-auto-check small {
   display: block;
@@ -42,10 +42,10 @@
   line-height: 1.6;
 }
 .dashboard-update-success {
-  color: var(--text-muted);
+  color: var(--accent);
 }
 .dashboard-manager a {
-  color: var(--text-muted);
+  color: var(--accent);
 }
 @media (max-width: 480px) {
   .dashboard-versions {
@@ -60,9 +60,9 @@
   gap: 16px;
   margin: 0 24px 20px;
   padding: 16px;
-  background: #f7f9fa;
-  border: 1px solid #e4eaf0;
-  border-radius: 8px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius);
   font-size: 13px;
   flex-wrap: wrap;
 }
@@ -72,7 +72,7 @@
   line-height: 1.8;
 }
 .core-warning {
-  color: var(--text-muted);
+  color: var(--text-warning);
 }
 .core-confirm {
   padding: 20px 24px;
@@ -89,7 +89,7 @@
 .provider-resource-links strong {
   font-size: 14px;
   font-weight: 500;
-  color: #4d6173;
+  color: var(--text-primary);
 }
 .resource-core p,
 .provider-resource-links p {
@@ -114,7 +114,7 @@
 }
 .geo-settings dd {
   margin: 10px 0 0;
-  color: #445e71;
+  color: var(--text-primary);
   font-size: 15px;
 }
 .geo-settings dd small {
@@ -142,7 +142,7 @@
   color: var(--text-muted);
 }
 .geo-source + .geo-source {
-  border-top: 1px solid #edf1f3;
+  border-top: 1px solid var(--border);
 }
 .geo-source-info {
   min-width: 0;
@@ -156,7 +156,7 @@
 .geo-source h3 {
   font-size: 14px;
   font-weight: 500;
-  color: #4d6173;
+  color: var(--text-primary);
 }
 .geo-source p {
   margin-top: 7px;

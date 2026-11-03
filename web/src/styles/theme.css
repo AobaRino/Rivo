@@ -1,0 +1,69 @@
+/* Rivo shares Mori's palette; component styles use semantic tokens in both modes. */
+:root {
+  color-scheme: light;
+  --font-sans: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+  --canvas: #f4f6f5;
+  --surface: #ffffff;
+  --surface-muted: #f7f9f7;
+  --sidebar-bg: #edf1ee;
+  --text-primary: #26352d;
+  --text-secondary: #4e6055;
+  --text-muted: #627168;
+  --accent: #27634c;
+  --accent-dark: #1f513d;
+  --on-accent: #ffffff;
+  --mint: #e4eee8;
+  --text-success: var(--accent);
+  --text-danger: #a73139;
+  --danger-bg: #fbebeb;
+  --danger-border: #e7c2c5;
+  --text-warning: #8a5e17;
+  --warning-bg: #fff3dc;
+  --text-info: #2b637c;
+  --info-bg: #eaf3f8;
+  --text-purple: #72548f;
+  --purple-bg: #f2edf7;
+  --border: #dfe6e1;
+  --border-strong: #b5c8bc;
+  --control-border: var(--border);
+  --control-hover: var(--mint);
+  --control-radius: 9px;
+  --radius: 16px;
+  --muted: var(--text-muted);
+  --switch-track: #c6d3cb;
+  --switch-thumb: #ffffff;
+  --overlay: #18271f66;
+  --card-shadow: 0 1px 4px #1c302309;
+  --dialog-shadow: 0 12px 40px #1f34281f;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --canvas: #121817;
+  --surface: #1b2420;
+  --surface-muted: #202c25;
+  --sidebar-bg: #171f1b;
+  --text-primary: #e4ede7;
+  --text-secondary: #c0cec5;
+  --text-muted: #a2b2a8;
+  --accent: #9ed0b4;
+  --accent-dark: #b9dfc9;
+  --on-accent: #152e20;
+  --mint: #293e31;
+  --text-danger: #f1a7ab;
+  --danger-bg: #42272c;
+  --danger-border: #75454c;
+  --text-warning: #e5bf7c;
+  --warning-bg: #3c3221;
+  --text-info: #9dcbdf;
+  --info-bg: #243842;
+  --text-purple: #c8b3e3;
+  --purple-bg: #342c40;
+  --border: #34433a;
+  --border-strong: #536d5c;
+  --switch-track: #43574a;
+  --switch-thumb: #e4ede7;
+  --overlay: #050a08a6;
+  --card-shadow: 0 1px 4px #0000001a;
+  --dialog-shadow: 0 16px 48px #00000052;
+}

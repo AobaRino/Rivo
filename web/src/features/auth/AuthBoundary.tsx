@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode, type FormEvent } from 'rea
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { LockKeyhole } from 'lucide-react'
 import { APP_NAME, BrandMark } from '../../components/Brand'
+import { AppearanceToggle } from '../../app/Appearance'
 import { apiFetch } from '../../lib/transport'
 import './auth.css'
 
@@ -71,9 +72,12 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
       {!authenticated && (
         <main className="auth-shell">
           <section className="auth-card">
-            <div className="auth-brand">
-              <BrandMark />
-              <span>{APP_NAME}</span>
+            <div className="auth-heading">
+              <div className="auth-brand">
+                <BrandMark />
+                <span>{APP_NAME}</span>
+              </div>
+              <AppearanceToggle />
             </div>
             <h1>{setup ? '设置管理密码' : '登录管理器'}</h1>
             <p>

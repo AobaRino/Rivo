@@ -13,11 +13,11 @@
   padding: 8px;
   border: 1px solid var(--border);
   border-radius: var(--control-radius);
-  background: #fff;
+  background: var(--surface);
 }
 .ordered-list > li.drag-over {
   border-color: var(--accent);
-  background: #eef7f3;
+  background: var(--mint);
 }
 .order-handle {
   cursor: grab;
@@ -72,9 +72,9 @@
   color: var(--text-muted);
 }
 .group-order-warning {
-  color: #8a581a;
-  background: #fff8ed;
-  border: 1px solid #eadac2;
+  color: var(--text-warning);
+  background: var(--warning-bg);
+  border: 1px solid var(--border);
   border-radius: var(--control-radius);
   padding: 10px 12px;
   font-size: 13px;
@@ -99,7 +99,7 @@
 .group-order-preview span {
   border: 1px solid var(--border);
   padding: 5px 9px;
-  border-radius: 6px;
+  border-radius: var(--control-radius);
   overflow-wrap: anywhere;
 }
 .group-order-records {

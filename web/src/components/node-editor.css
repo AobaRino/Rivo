@@ -8,7 +8,7 @@
 .node-yaml-examples {
   min-width: 0;
   padding: 16px 24px;
-  background: #f7f9fa;
+  background: var(--surface-muted);
   border-bottom: 1px solid var(--border);
 }
 .node-yaml-heading,
@@ -20,7 +20,7 @@
   gap: 8px;
 }
 .node-yaml-heading {
-  color: #40566c;
+  color: var(--text-primary);
   font-size: 14px;
   font-weight: 600;
 }
@@ -42,12 +42,12 @@
   margin: 10px 0 0;
 }
 .node-yaml-help code {
-  color: #4c647b;
+  color: var(--text-secondary);
 }
 .node-yaml-code {
   height: clamp(260px, 45vh, 560px);
-  border: 1px solid #e0e7eb;
-  border-radius: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--control-radius);
   overflow: hidden;
 }
 .node-yaml-code .editor {
@@ -84,9 +84,9 @@
   white-space: nowrap;
 }
 .node-yaml-error {
-  color: #a14f44;
-  background: #fcf3f0;
-  border-radius: 6px;
+  color: var(--text-danger);
+  background: var(--danger-bg);
+  border-radius: var(--control-radius);
   padding: 10px 12px;
   font-size: 13px;
   line-height: 1.7;

@@ -4,6 +4,7 @@ import EditorWorker from 'monaco-editor/esm/vs/editor/editor.worker.js?worker'
 import YamlWorker from './yaml.worker?worker'
 import { editorSchemas } from './yamlSchema'
 import { getSchemaSnapshot, subscribeSchema } from './schemaStore'
+import type { Appearance } from '../app/Appearance'
 
 globalThis.MonacoEnvironment = {
   getWorker(_moduleId, label) {
@@ -32,30 +33,54 @@ const unsubscribe = subscribeSchema(() => {
   void language.update({ schemas: editorSchemas(snapshot) })
 })
 
-monaco.editor.defineTheme('mihomo-light', {
-  base: 'vs',
-  inherit: true,
-  rules: [
-    { token: 'comment', foreground: '8593A1' },
-    { token: 'type', foreground: '456D97' },
-    { token: 'string', foreground: '438B71' },
-    { token: 'number', foreground: 'AD7440' },
-    { token: 'keyword', foreground: '9273B2' },
-  ],
-  colors: {
-    'editor.background': '#fbfcfd',
-    'editor.foreground': '#33445a',
-    'editorLineNumber.foreground': '#a7b1bd',
-    'editorLineNumber.activeForeground': '#438b71',
-    'editor.lineHighlightBackground': '#eff4f3',
-    'editor.selectionBackground': '#cde9df',
-    'editorCursor.foreground': '#16856c',
-    'editorSuggestWidget.background': '#ffffff',
-    'editorSuggestWidget.border': '#dce4e9',
-    'editorHoverWidget.background': '#ffffff',
-    'editorHoverWidget.border': '#dce4e9',
-  },
-})
+export const monacoThemeName = (appearance: Appearance) => `rivo-${appearance}`
+
+export function applyMonacoAppearance(appearance: Appearance) {
+  // Monaco expects resolved colors, so share the app tokens without copying its palette.
+  const style = getComputedStyle(document.documentElement)
+  const color = (token: string) => style.getPropertyValue(token).trim()
+  const foreground = (token: string) => color(token).replace(/^#/, '')
+  const name = monacoThemeName(appearance)
+  monaco.editor.defineTheme(name, {
+    base: appearance === 'dark' ? 'vs-dark' : 'vs',
+    inherit: true,
+    rules: [
+      { token: 'comment', foreground: foreground('--text-muted') },
+      { token: 'type', foreground: foreground('--text-info') },
+      { token: 'string', foreground: foreground('--accent') },
+      { token: 'number', foreground: foreground('--text-warning') },
+      { token: 'keyword', foreground: foreground('--text-purple') },
+    ],
+    colors: {
+      'editor.background': color('--surface'),
+      'editor.foreground': color('--text-primary'),
+      'editorLineNumber.foreground': color('--text-muted'),
+      'editorLineNumber.activeForeground': color('--accent'),
+      'editor.lineHighlightBackground': color('--surface-muted'),
+      'editor.selectionBackground': color('--mint'),
+      'editor.inactiveSelectionBackground': color('--mint'),
+      'editorCursor.foreground': color('--accent'),
+      'editorGutter.background': color('--surface'),
+      'editorSuggestWidget.background': color('--surface'),
+      'editorSuggestWidget.foreground': color('--text-primary'),
+      'editorSuggestWidget.border': color('--border'),
+      'editorSuggestWidget.selectedBackground': color('--mint'),
+      'editorSuggestWidget.highlightForeground': color('--accent'),
+      'editorHoverWidget.background': color('--surface'),
+      'editorHoverWidget.foreground': color('--text-primary'),
+      'editorHoverWidget.border': color('--border'),
+      'editorWidget.background': color('--surface'),
+      'editorWidget.border': color('--border'),
+      'input.background': color('--surface-muted'),
+      'input.foreground': color('--text-primary'),
+      'input.border': color('--border'),
+      focusBorder: color('--accent'),
+      'editorError.foreground': color('--text-danger'),
+      'editorWarning.foreground': color('--text-warning'),
+    },
+  })
+  monaco.editor.setTheme(name)
+}
 
 if (import.meta.hot)
   import.meta.hot.dispose(() => {
