@@ -1,0 +1,43 @@
+#!/bin/sh /etc/rc.common
+START=94
+STOP=7
+
+# The master switch owns only this application's services and network rules.
+start() {
+    [ ! -e /etc/mihomo-manager.disabled ] || return 0
+    # The master owns boot activation even on a fresh, unconfigured installation.
+    /etc/init.d/mihomo-manager disable
+    /etc/init.d/mihomo-manager-core disable
+    /etc/init.d/mihomo-manager-network disable
+    /etc/init.d/mihomo-manager start || return 1
+    [ -s /etc/mihomo-manager-runtime/active.yaml ] || return 0
+    /etc/init.d/mihomo-manager-core start || return 1
+    local tries=0
+    until curl -fsS --max-time 2 --unix-socket /var/run/mihomo-manager-core/control.sock http://localhost/version >/dev/null; do
+        tries=$((tries + 1))
+        [ "$tries" -lt 15 ] || return 1
+        sleep 1
+    done
+    if [ -e /etc/mihomo-manager-runtime/network-wanted ]; then
+        if [ ! -e /etc/mihomo-manager-runtime/network-enabled ]; then
+            /usr/libexec/mihomo-manager-network prepare &&
+            /usr/libexec/mihomo-manager-network on &&
+            /usr/libexec/mihomo-manager-network commit || return 1
+        fi
+    fi
+    /etc/init.d/mihomo-manager-network start
+}
+
+stop() {
+    local result=0
+    [ ! -e /etc/mihomo-manager-runtime/network-enabled ] || touch /etc/mihomo-manager-runtime/network-wanted
+    # Do not let the asynchronous apply watchdog start the core again.
+    /etc/init.d/mihomo-manager-apply stop || result=1
+    /etc/init.d/mihomo-manager-network stop || { /usr/libexec/mihomo-manager-network off || result=1; }
+    /etc/init.d/mihomo-manager-core stop || result=1
+    /etc/init.d/mihomo-manager stop || result=1
+    /etc/init.d/mihomo-manager disable
+    /etc/init.d/mihomo-manager-core disable
+    /etc/init.d/mihomo-manager-network disable
+    return "$result"
+}

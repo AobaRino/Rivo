@@ -1,0 +1,7 @@
+{
+  "luci-app-mihomo-manager": {
+    "description": "Control Rivo services and Web port",
+    "read": { "ubus": { "mihomo-manager": ["status"] } },
+    "write": { "ubus": { "mihomo-manager": ["configure", "set_enabled", "set_autostart", "bootstrap"] } }
+  }
+}

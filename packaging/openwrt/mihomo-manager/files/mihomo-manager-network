@@ -1,0 +1,108 @@
+#!/bin/sh
+# First supported target: single br-lan IPv4 LAN. Own policy table/mark only.
+set -u
+ROOT=/etc/mihomo-manager-runtime
+core_ready() {
+    curl -fsS --max-time 2 --unix-socket /var/run/mihomo-manager-core/control.sock http://localhost/version >/dev/null 2>&1
+}
+remove_rules() {
+    nft delete table inet mihomo_manager 2>/dev/null || true
+    ip -4 rule del pref 17890 fwmark 0x01000000/0x01000000 lookup 17890 2>/dev/null || true
+    ip -4 route del local default dev lo table 17890 2>/dev/null || true
+}
+restore_options() {
+    [ -e "$ROOT/network-original" ] || return 0
+    # This deployment records the initial values below; reject a different
+    # baseline in prepare rather than assuming ownership of existing settings.
+    if [ "$(uci -q get dhcp.@dnsmasq[0].server)" = '127.0.0.1#1053' ]; then
+        uci -q delete dhcp.@dnsmasq[0].server || return 1
+    fi
+    if [ "$(uci -q get dhcp.@dnsmasq[0].noresolv)" = 1 ]; then
+        uci -q delete dhcp.@dnsmasq[0].noresolv || return 1
+    fi
+    if [ "$(uci -q get firewall.@defaults[0].flow_offloading)" = 0 ]; then
+        uci set firewall.@defaults[0].flow_offloading=1 || return 1
+    fi
+    if [ "$(uci -q get firewall.@defaults[0].flow_offloading_hw)" = 0 ]; then
+        uci set firewall.@defaults[0].flow_offloading_hw=1 || return 1
+    fi
+    # Retry service reloads even if a previous attempt already changed UCI.
+    # Otherwise a failed dnsmasq restart could leave it pointing at a stopped core.
+    uci commit dhcp && /etc/init.d/dnsmasq restart || return 1
+    uci commit firewall && /etc/init.d/firewall reload || return 1
+    return 0
+}
+off() {
+    rm -f "$ROOT/network-enabled" "$ROOT/network-pending"
+    remove_rules
+    restore_options
+}
+install_rules() {
+    ip -4 route replace local default dev lo table 17890 || return 1
+    ip -4 rule show | grep -q '17890:.*0x1000000/0x1000000.*lookup 17890' ||
+        ip -4 rule add pref 17890 fwmark 0x01000000/0x01000000 lookup 17890 || return 1
+    if ! nft list table inet mihomo_manager >/dev/null 2>&1; then
+        nft -f /usr/share/mihomo-manager/lan.nft || return 1
+    fi
+}
+case "${1:-}" in
+  prepare)
+    core_ready || exit 1
+    [ -z "$(uci -q get dhcp.@dnsmasq[0].server)" ] || exit 1
+    [ -z "$(uci -q get dhcp.@dnsmasq[0].noresolv)" ] || exit 1
+    [ "$(uci -q get firewall.@defaults[0].flow_offloading)" = 1 ] || exit 1
+    [ "$(uci -q get firewall.@defaults[0].flow_offloading_hw)" = 1 ] || exit 1
+    [ -z "$(ip -4 route show table 17890 2>/dev/null)" ] || exit 1
+    ! ip -4 rule show | grep -q '^17890:' || exit 1
+    ! nft list table inet mihomo_manager >/dev/null 2>&1 || exit 1
+    nft -c -f /usr/share/mihomo-manager/lan.nft || exit 1
+    touch "$ROOT/network-original"
+    # Start the independent watchdog BEFORE touching DNS/firewall/policy routes.
+    date +%s | awk '{print $1+240}' > "$ROOT/network-pending"
+    /etc/init.d/mihomo-manager-network start || exit 1
+    ;;
+  on)
+    [ -e "$ROOT/network-pending" ] || exit 1
+    core_ready || exit 1
+    uci set firewall.@defaults[0].flow_offloading=0
+    uci set firewall.@defaults[0].flow_offloading_hw=0
+    uci commit firewall
+    /etc/init.d/firewall reload || { off; exit 1; }
+    install_rules || { off; exit 1; }
+    uci set dhcp.@dnsmasq[0].noresolv=1
+    uci add_list dhcp.@dnsmasq[0].server='127.0.0.1#1053'
+    uci commit dhcp
+    /etc/init.d/dnsmasq restart || { off; exit 1; }
+    ;;
+  commit)
+    [ -e "$ROOT/network-pending" ] && core_ready || exit 1
+    touch "$ROOT/network-enabled"
+    rm -f "$ROOT/network-pending"
+    # Boot activation belongs to mihomo-manager-system (the LuCI switch).
+    # Committing interception must not create independent boot entries.
+    ;;
+  off) off ;;
+  watch)
+    failures=0
+    while :; do
+        /usr/bin/mihomo-manager router-watch-apply >/dev/null 2>&1 || true
+        if [ -e "$ROOT/network-pending" ]; then
+            deadline=$(cat "$ROOT/network-pending")
+            if [ "$(date +%s)" -ge "$deadline" ]; then off; fi
+        elif [ -e "$ROOT/network-enabled" ]; then
+            # On boot/firewall reload restore only our table. If the core dies,
+            # remove interception so SSH/LuCI and direct Internet remain usable.
+            if core_ready; then
+                failures=0
+                install_rules
+            else
+                remove_rules
+                failures=$((failures+1))
+                if [ "$failures" -ge 5 ] && [ ! -e "$ROOT/apply-pending" ]; then off; fi
+            fi
+        fi
+        sleep 3
+    done
+    ;;
+  *) exit 2 ;;
+esac

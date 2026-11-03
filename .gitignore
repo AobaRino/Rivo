@@ -1,0 +1,18 @@
+node_modules/
+web/dist/
+.local/
+.tools/
+dist/
+*.log
+*.tsbuildinfo
+
+# Local credentials, overrides and package signing material.
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.apk
+*.ipk

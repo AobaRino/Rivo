@@ -1,0 +1,22 @@
+# 路由器配置草稿。此版本不会启动 Mihomo 或将配置应用到网络。
+# 节点、订阅与规则集请按需添加。保存后可在 YAML 页面导出。
+mixed-port: 7890
+allow-lan: false
+bind-address: 127.0.0.1
+mode: rule
+log-level: info
+ipv6: true
+dns:
+  enable: false
+tun:
+  enable: false
+proxies: []
+proxy-providers: {}
+proxy-groups:
+  - name: 默认出口
+    type: select
+    proxies:
+      - DIRECT
+rule-providers: {}
+rules:
+  - MATCH,默认出口

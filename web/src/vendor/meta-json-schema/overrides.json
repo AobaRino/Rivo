@@ -1,0 +1,8 @@
+{
+  "ssr": {
+    "udp": { "type": "boolean", "title": "启用 UDP", "description": "ShadowsocksR UDP 转发，对应 ShadowSocksROption.UDP。" }
+  },
+  "masque": {
+    "name-cert-verify": { "type": "string", "title": "证书 DNSName 校验目标", "description": "对应 MasqueOption.NameCertVerify。" }
+  }
+}

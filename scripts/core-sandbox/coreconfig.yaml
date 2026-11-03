@@ -1,0 +1,15 @@
+mixed-port: 17890
+allow-lan: false
+bind-address: 127.0.0.1
+external-controller: 127.0.0.1:19090
+secret: isolated-core-test-only-secret
+mode: rule
+log-level: info
+ipv6: false
+find-process-mode: off
+dns:
+  enable: false
+tun:
+  enable: false
+rules:
+  - MATCH,DIRECT

@@ -1,0 +1,98 @@
+.yaml-editor {
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+  background: #fbfcfd;
+}
+.yaml-editor-tools,
+.yaml-editor-diagnostics {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  padding: 7px 12px;
+  font-size: 11px;
+  color: #8392a0;
+  background: #f7f9fa;
+}
+.yaml-editor-tools {
+  border-bottom: 1px solid #e7edf0;
+  flex-wrap: wrap;
+}
+.yaml-editor-tools button,
+.yaml-editor-diagnostics button {
+  border: 0;
+  padding: 3px 0;
+  color: #287c66;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.yaml-editor-tools button:hover,
+.yaml-editor-diagnostics button:hover {
+  text-decoration: underline;
+}
+.yaml-editor-version {
+  margin-left: auto;
+}
+.yaml-schema-warning {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  color: #8c692a;
+  background: #fff8e9;
+  font-size: 11px;
+}
+.yaml-editor-surface {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+.yaml-editor-diagnostics {
+  border-top: 1px solid #e7edf0;
+  justify-content: space-between;
+}
+.yaml-editor-diagnostics .has-problems,
+.yaml-editor-problems .error {
+  color: #b14e47;
+}
+.yaml-editor-problems {
+  max-height: 120px;
+  overflow: auto;
+  flex-shrink: 0;
+  border-top: 1px solid #e7edf0;
+  font-size: 11px;
+}
+.yaml-editor-problems > button {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid #edf0f3;
+  background: #fff;
+  color: #4d6074;
+  font: inherit;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.yaml-editor-problems > button:hover {
+  background: #eff4f3;
+}
+.yaml-editor-problems > button > span:nth-child(-n + 2) {
+  white-space: nowrap;
+}
+.yaml-editor-problems > button > span:last-child {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.yaml-editor-problems p {
+  margin: 10px 12px;
+  color: #8392a0;
+}
+.yaml-editor-problems .warning {
+  color: #ac792b;
+}
+.monaco-editor .overflowingContentWidgets {
+  z-index: 100;
+}

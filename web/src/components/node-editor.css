@@ -1,0 +1,95 @@
+.node-yaml-layout {
+  min-height: 0;
+}
+.node-yaml-main {
+  min-width: 0;
+  padding: 16px 24px 14px;
+}
+.node-yaml-examples {
+  min-width: 0;
+  padding: 16px 24px;
+  background: #f7f9fa;
+  border-bottom: 1px solid var(--border);
+}
+.node-yaml-heading,
+.node-yaml-heading > span,
+.node-yaml-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.node-yaml-heading {
+  color: #40566c;
+  font-size: 14px;
+  font-weight: 600;
+}
+.node-yaml-heading .node-yaml-format {
+  font:
+    11px Consolas,
+    monospace;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.node-yaml-help,
+.node-example-note {
+  margin: 12px 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.node-example-note {
+  margin: 10px 0 0;
+}
+.node-yaml-help code {
+  color: #4c647b;
+}
+.node-yaml-code {
+  height: clamp(260px, 45vh, 560px);
+  border: 1px solid #e0e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.node-yaml-code .editor {
+  border: 0;
+  border-radius: 0;
+}
+.node-example-picker {
+  flex: 1;
+  min-width: 220px;
+}
+.node-yaml-status {
+  padding-top: 12px;
+  min-height: 28px;
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+.node-yaml-status button,
+.node-reference-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-decoration: none;
+}
+.node-yaml-status button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+.node-example-toolbar .node-reference-link {
+  white-space: nowrap;
+}
+.node-yaml-error {
+  color: #a14f44;
+  background: #fcf3f0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}

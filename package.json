@@ -1,0 +1,33 @@
+{
+  "name": "rivo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Rivo — Web configuration and runtime management for Mihomo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AobaRino/Rivo.git"
+  },
+  "workspaces": [
+    "web"
+  ],
+  "scripts": {
+    "build:router": "node scripts/router/prepare.mjs",
+    "dev": "node scripts/dev.mjs",
+    "setup:zashboard": "node scripts/go.mjs run ./scripts/setup-zashboard",
+    "dev:web": "npm run dev --workspace web",
+    "build": "npm run build --workspace web",
+    "test": "npm run test --workspace web",
+    "check": "npm run check --workspace web",
+    "test:go": "node scripts/go.mjs test ./...",
+    "format": "prettier --write web/src scripts web/vite.config.ts"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  },
+  "overrides": {
+    "monaco-editor": {
+      ".": "0.54.0",
+      "dompurify": "3.4.17"
+    }
+  }
+}

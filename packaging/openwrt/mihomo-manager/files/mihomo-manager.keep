@@ -1,0 +1,5 @@
+/etc/mihomo-manager/
+/etc/config/mihomo-manager
+/etc/mihomo-manager.disabled
+/etc/mihomo-manager-runtime/
+/usr/libexec/mihomo-manager-core

@@ -1,0 +1,174 @@
+{
+  "coreTypes": 28,
+  "missingTypes": [],
+  "protocols": [
+    {
+      "type": "ss",
+      "coreFields": 17,
+      "schemaFields": 19,
+      "missing": []
+    },
+    {
+      "type": "ssr",
+      "coreFields": 16,
+      "schemaFields": 18,
+      "missing": []
+    },
+    {
+      "type": "socks5",
+      "coreFields": 18,
+      "schemaFields": 20,
+      "missing": []
+    },
+    {
+      "type": "http",
+      "coreFields": 19,
+      "schemaFields": 21,
+      "missing": []
+    },
+    {
+      "type": "vmess",
+      "coreFields": 40,
+      "schemaFields": 42,
+      "missing": []
+    },
+    {
+      "type": "vless",
+      "coreFields": 37,
+      "schemaFields": 40,
+      "missing": []
+    },
+    {
+      "type": "snell",
+      "coreFields": 15,
+      "schemaFields": 17,
+      "missing": []
+    },
+    {
+      "type": "trojan",
+      "coreFields": 28,
+      "schemaFields": 30,
+      "missing": []
+    },
+    {
+      "type": "hysteria",
+      "coreFields": 32,
+      "schemaFields": 36,
+      "missing": []
+    },
+    {
+      "type": "hysteria2",
+      "coreFields": 35,
+      "schemaFields": 39,
+      "missing": []
+    },
+    {
+      "type": "wireguard",
+      "coreFields": 26,
+      "schemaFields": 28,
+      "missing": []
+    },
+    {
+      "type": "tuic",
+      "coreFields": 38,
+      "schemaFields": 42,
+      "missing": []
+    },
+    {
+      "type": "shadowquic",
+      "coreFields": 27,
+      "schemaFields": 29,
+      "missing": []
+    },
+    {
+      "type": "gost-relay",
+      "coreFields": 22,
+      "schemaFields": 24,
+      "missing": []
+    },
+    {
+      "type": "direct",
+      "coreFields": 7,
+      "schemaFields": 9,
+      "missing": []
+    },
+    {
+      "type": "dns",
+      "coreFields": 7,
+      "schemaFields": 9,
+      "missing": []
+    },
+    {
+      "type": "reject",
+      "coreFields": 7,
+      "schemaFields": 9,
+      "missing": []
+    },
+    {
+      "type": "rematch",
+      "coreFields": 9,
+      "schemaFields": 11,
+      "missing": []
+    },
+    {
+      "type": "ssh",
+      "coreFields": 15,
+      "schemaFields": 17,
+      "missing": []
+    },
+    {
+      "type": "mieru",
+      "coreFields": 17,
+      "schemaFields": 19,
+      "missing": []
+    },
+    {
+      "type": "anytls",
+      "coreFields": 28,
+      "schemaFields": 30,
+      "missing": []
+    },
+    {
+      "type": "sudoku",
+      "coreFields": 25,
+      "schemaFields": 28,
+      "missing": []
+    },
+    {
+      "type": "masque",
+      "coreFields": 27,
+      "schemaFields": 29,
+      "missing": []
+    },
+    {
+      "type": "trusttunnel",
+      "coreFields": 29,
+      "schemaFields": 31,
+      "missing": []
+    },
+    {
+      "type": "openvpn",
+      "coreFields": 35,
+      "schemaFields": 37,
+      "missing": []
+    },
+    {
+      "type": "tailscale",
+      "coreFields": 16,
+      "schemaFields": 18,
+      "missing": []
+    },
+    {
+      "type": "zerotier",
+      "coreFields": 26,
+      "schemaFields": 28,
+      "missing": []
+    },
+    {
+      "type": "easytier",
+      "coreFields": 37,
+      "schemaFields": 39,
+      "missing": []
+    }
+  ]
+}

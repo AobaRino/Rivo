@@ -1,0 +1,8 @@
+{
+  "version": "v3.29.1",
+  "url": "https://github.com/Zephyruso/zashboard/releases/download/v3.29.1/dist-no-fonts.zip",
+  "sha256": "21371cd111b6b3d87774f3ea3ddeacdcb0f6aff8690a16d652daa3ea6e3b0145",
+  "source": "https://github.com/Zephyruso/zashboard/tree/v3.29.1",
+  "commit": "50717b02dac68425cdc5b80cb754bea768ee4fc9",
+  "license": "MIT"
+}

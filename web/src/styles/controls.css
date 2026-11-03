@@ -1,0 +1,403 @@
+/* Shared controls and dialog layout. Page CSS owns placement, not control sizes. */
+:root {
+  --control-height: 40px;
+  --control-height-small: 34px;
+  --control-radius: 7px;
+  --control-border: #d6dee7;
+  --dialog-padding: 24px;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  color: inherit;
+  border: 0;
+  background: none;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+:where(button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+:where(
+  input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='hidden']),
+  select,
+  textarea
+) {
+  width: 100%;
+  min-width: 0;
+  height: var(--control-height);
+  padding: 0 12px;
+  border: 1px solid var(--control-border);
+  border-radius: var(--control-radius);
+  background: #fff;
+  color: var(--text-primary);
+  font-size: 14px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+:where(input, select, textarea):hover:not(:disabled) {
+  border-color: #a9bbb5;
+}
+:where(input, select, textarea):focus {
+  border-color: var(--accent);
+}
+:where(input, textarea)::placeholder {
+  color: var(--text-muted);
+}
+:where(input, select, textarea):disabled {
+  color: var(--text-muted);
+  background: #eef1f4;
+}
+:where(textarea) {
+  height: auto;
+  min-height: 120px;
+  padding: 10px 12px;
+  line-height: 1.7;
+  resize: vertical;
+}
+:where(select) {
+  cursor: pointer;
+}
+:where(input[type='checkbox'], input[type='radio']) {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 auto;
+  accent-color: var(--accent);
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: var(--control-height);
+  padding: 0 13px;
+  border: 1px solid var(--control-border);
+  border-radius: var(--control-radius);
+  background: #fff;
+  color: var(--text-secondary);
+  font-size: 14px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.button:hover:not(:disabled) {
+  background: #f4f8f6;
+  border-color: #a9bbb5;
+}
+.button.primary {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.button.primary:hover:not(:disabled) {
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+.button.small {
+  height: var(--control-height-small);
+  padding: 0 10px;
+  font-size: 13px;
+}
+.button.icon {
+  width: var(--control-height);
+  padding: 0;
+}
+.button.danger-button {
+  color: #fff;
+  background: var(--text-danger);
+  border-color: var(--text-danger);
+}
+.button.danger-button:hover:not(:disabled) {
+  background: #8c3029;
+  border-color: #8c3029;
+}
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-height-small);
+  height: var(--control-height-small);
+  padding: 0;
+  flex: 0 0 auto;
+  border-radius: var(--control-radius);
+  color: var(--text-secondary);
+}
+.icon-button:hover:not(:disabled) {
+  background: #eff5f2;
+}
+:is(.icon-button, .button.icon).danger {
+  color: var(--text-danger);
+}
+:is(.icon-button, .button.icon).danger:hover:not(:disabled) {
+  background: #fff2ef;
+  border-color: #e7b8b2;
+}
+.text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  font-size: 13px;
+  color: var(--accent-dark);
+  white-space: nowrap;
+}
+.text-button:hover:not(:disabled) {
+  text-decoration: underline;
+}
+:is(.button, .icon-button, .text-button, .segmented button):disabled {
+  color: #697586;
+  background: #eef1f4;
+  border-color: var(--control-border);
+  opacity: 1;
+  box-shadow: none;
+  transform: none;
+}
+.segmented {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  background: #f5f7f9;
+  border: 1px solid var(--control-border);
+  border-radius: var(--control-radius);
+}
+.segmented button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+  gap: 4px;
+  height: var(--control-height-small);
+  padding: 0 8px;
+  border-radius: 5px;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+.segmented button[aria-pressed='true']:not(:disabled) {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 1px 4px #23374814;
+  font-weight: 600;
+}
+.action-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.control-row > span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.control-row > :is(input, select) {
+  flex: 1;
+  min-width: 0;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.field > span {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+}
+.field small {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+.form-body,
+.modal-form {
+  display: grid;
+  gap: 20px;
+  padding: var(--dialog-padding);
+  margin: 0;
+  border: 0;
+  min-width: 0;
+}
+.search-input {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 290px;
+  max-width: 100%;
+  min-width: 0;
+  color: var(--text-muted);
+}
+.search-input input {
+  min-width: 0;
+  flex: 1;
+}
+.checkbox-list {
+  display: grid;
+  gap: 12px;
+  max-height: 220px;
+  overflow: auto;
+  padding: 5px 0;
+}
+.checkbox-list label,
+.checkbox-line {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: #1c2e4255;
+  animation: fade-in 0.15s ease;
+}
+.modal {
+  display: flex;
+  flex-direction: column;
+  width: 510px;
+  max-width: 100%;
+  max-height: 90dvh;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 16px 70px #20334525;
+  outline: none;
+}
+.modal-medium {
+  width: 850px;
+}
+.modal-large {
+  width: 980px;
+}
+.modal-wide {
+  width: 1120px;
+}
+.modal-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px var(--dialog-padding);
+  border-bottom: 1px solid var(--border);
+  flex: 0 0 auto;
+}
+.modal-heading h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1.5;
+}
+.modal > form {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.modal-form,
+.modal-scroll,
+.dialog-body {
+  min-height: 0;
+  overflow: auto;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px var(--dialog-padding);
+  border-top: 1px solid var(--border);
+  background: #fcfdfd;
+  flex: 0 0 auto;
+}
+.modal-actions > .modal-hint {
+  margin: 0 auto 0 0;
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.dialog-body {
+  padding: var(--dialog-padding);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.dialog-body p + p {
+  margin-top: 14px;
+}
+.dialog-body strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 700px) {
+  :root {
+    --dialog-padding: 18px;
+  }
+  .modal-backdrop {
+    padding: 14px;
+  }
+  .modal {
+    max-height: calc(100dvh - 28px);
+  }
+  .modal-actions > .modal-hint {
+    flex-basis: 100%;
+  }
+}
+@media (max-width: 480px) {
+  .field-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

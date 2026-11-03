@@ -1,0 +1,239 @@
+.resources-page {
+  display: grid;
+  gap: 20px;
+}
+.dashboard-versions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 20px 24px;
+}
+.dashboard-versions dt {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.dashboard-versions dd {
+  margin: 8px 0 0;
+  color: #445e71;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.dashboard-update-controls {
+  padding: 0 24px 18px;
+  display: grid;
+  gap: 18px;
+}
+.dashboard-auto-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #4d6173;
+}
+.dashboard-auto-check input {
+  accent-color: #198976;
+}
+.dashboard-auto-check small {
+  display: block;
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.dashboard-update-success {
+  color: var(--text-muted);
+}
+.dashboard-manager a {
+  color: var(--text-muted);
+}
+@media (max-width: 480px) {
+  .dashboard-versions {
+    grid-template-columns: 1fr;
+  }
+}
+.core-update-row,
+.core-prepared {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 24px 20px;
+  padding: 16px;
+  background: #f7f9fa;
+  border: 1px solid #e4eaf0;
+  border-radius: 8px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.core-prepared p,
+.core-confirm p {
+  margin: 8px 0;
+  line-height: 1.8;
+}
+.core-warning {
+  color: var(--text-muted);
+}
+.core-confirm {
+  padding: 20px 24px;
+  font-size: 14px;
+}
+.resource-core {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  color: var(--text-muted);
+}
+.resource-core strong,
+.provider-resource-links strong {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4d6173;
+}
+.resource-core p,
+.provider-resource-links p {
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 6px;
+  color: var(--text-muted);
+}
+.resource-core-actions {
+  margin-left: auto;
+}
+.geo-settings {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding: 24px;
+  margin: 0;
+}
+.geo-settings dt {
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.geo-settings dd {
+  margin: 10px 0 0;
+  color: #445e71;
+  font-size: 15px;
+}
+.geo-settings dd small {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-top: 7px;
+}
+.resource-note {
+  margin: 0;
+  padding: 0 24px 20px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.geo-source-list {
+  padding: 0 24px;
+}
+.geo-source {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 0;
+  color: var(--text-muted);
+}
+.geo-source + .geo-source {
+  border-top: 1px solid #edf1f3;
+}
+.geo-source-info {
+  min-width: 0;
+  flex: 1;
+}
+.geo-source-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.geo-source h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4d6173;
+}
+.geo-source p {
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+.geo-source .geo-origin {
+  color: var(--text-muted);
+}
+.geo-source-status {
+  font-size: 12px;
+  color: var(--text-muted);
+  min-width: 145px;
+}
+.geo-source-status small {
+  display: block;
+  font-size: 12px;
+  margin-top: 7px;
+}
+.provider-resource-links {
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.provider-resource-links .text-button {
+  margin-top: 14px;
+  margin-right: 20px;
+}
+.resource-form .resource-note {
+  padding: 0;
+}
+@media (max-width: 1100px) {
+  .resource-core {
+    flex-wrap: wrap;
+  }
+  .resource-core-actions {
+    width: 100%;
+    margin-left: 48px;
+  }
+  .geo-settings {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .resources-page .panel-heading {
+    flex-wrap: wrap;
+  }
+  .resource-core,
+  .geo-settings,
+  .provider-resource-links {
+    padding: 18px;
+  }
+  .resource-core-actions {
+    margin-left: 0;
+  }
+  .geo-source-list {
+    padding: 0 18px;
+  }
+  .geo-source {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .geo-source-info {
+    flex-basis: calc(100% - 32px);
+  }
+  .geo-source-status {
+    flex: 1;
+    margin-left: 32px;
+  }
+  .resource-note {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .provider-resource-links {
+    grid-template-columns: 1fr;
+  }
+}

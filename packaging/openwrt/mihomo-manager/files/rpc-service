@@ -1,0 +1,6 @@
+#!/bin/sh
+case "$1" in
+  list) printf '%s\n' '{"status":{},"configure":{"port":0},"set_enabled":{"enabled":true},"set_autostart":{"enabled":true},"bootstrap":{}}' ;;
+  call) exec /usr/bin/mihomo-manager router-control "$2" ;;
+  *) exit 1 ;;
+esac

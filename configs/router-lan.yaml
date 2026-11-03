@@ -1,0 +1,81 @@
+# 家庭 LAN IPv4 分流。透明代理仅接收 br-lan，路由器自身出口不劫持。
+# DNS/代理监听端口与配套网络服务一致，请勿单独修改。
+mixed-port: 17890
+allow-lan: false
+bind-address: 127.0.0.1
+mode: rule
+log-level: warning
+ipv6: false
+find-process-mode: off
+profile:
+  store-selected: true
+tun:
+  enable: false
+listeners:
+  - name: lan-tproxy
+    type: tproxy
+    listen: 0.0.0.0
+    port: 17891
+    udp: true
+dns:
+  enable: true
+  listen: 127.0.0.1:1053
+  ipv6: false
+  enhanced-mode: redir-host
+  default-nameserver: [223.5.5.5, 119.29.29.29]
+  proxy-server-nameserver: [223.5.5.5, 119.29.29.29]
+  direct-nameserver: [223.5.5.5, 119.29.29.29]
+  nameserver:
+    - https://1.1.1.1/dns-query#默认出口
+    - https://8.8.8.8/dns-query#默认出口
+  nameserver-policy:
+    rule-set:国内域名: [223.5.5.5, 119.29.29.29]
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
+proxies:
+  - name: 示例-HY2
+    type: hysteria2
+    server: hy2.example.com
+    port: 443
+    password: REPLACE_WITH_NODE_PASSWORD
+    sni: hy2.example.com
+    skip-cert-verify: false
+proxy-providers: {}
+proxy-groups:
+  - name: 默认出口
+    type: select
+    proxies: [示例-HY2]
+rule-providers:
+  国内域名:
+    type: http
+    behavior: domain
+    format: mrs
+    path: ./rules/cn-domain.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geosite/cn.mrs
+    proxy: 默认出口
+    interval: 86400
+  国内IP:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    path: ./rules/cn-ip.mrs
+    url: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo/geoip/cn.mrs
+    proxy: 默认出口
+    interval: 86400
+rules:
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - RULE-SET,国内域名,DIRECT
+  - RULE-SET,国内IP,DIRECT,no-resolve
+  - MATCH,默认出口

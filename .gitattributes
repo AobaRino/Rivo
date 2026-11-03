@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.ps1 text eol=crlf
+# Keep the upstream notice intact, including its final blank line.
+web/public/licenses/monaco-editor-ThirdPartyNotices.txt whitespace=-blank-at-eof

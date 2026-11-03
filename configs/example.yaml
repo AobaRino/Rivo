@@ -1,0 +1,93 @@
+# Rivo · 本地示例配置
+# 这些节点仅用于界面预览，不连接任何真实服务。
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: true
+
+# DNS 配置
+dns:
+  enable: true
+  listen: 127.0.0.1:1053
+  enhanced-mode: redir-host
+  nameserver:
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
+
+# 自建节点：example.com 是保留的示例域名
+proxies:
+  - name: 香港 · Reality
+    type: vless
+    server: hk.example.com
+    port: 443
+    uuid: 00000000-0000-4000-8000-000000000001
+    tls: true
+    udp: true
+    network: tcp
+    servername: www.example.com
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: DEMO_NOT_A_REAL_PUBLIC_KEY
+      short-id: "0123456789abcdef"
+  - name: 日本 · Reality
+    type: vless
+    server: jp.example.com
+    port: 443
+    uuid: 00000000-0000-4000-8000-000000000002
+    tls: true
+    udp: true
+    network: tcp
+    servername: www.example.com
+    client-fingerprint: chrome
+  - name: 新加坡 · Trojan
+    type: trojan
+    server: sg.example.com
+    port: 443
+    password: demo-only
+    udp: true
+  - name: 美国 · Shadowsocks
+    type: ss
+    server: us.example.com
+    port: 8388
+    cipher: aes-128-gcm
+    password: demo-only
+
+proxy-groups:
+  - name: PROXY
+    type: select
+    proxies:
+      - 香港 · Reality
+      - 日本 · Reality
+      - AUTO
+      - DIRECT
+  - name: AUTO
+    type: url-test
+    proxies:
+      - 香港 · Reality
+      - 日本 · Reality
+      - 新加坡 · Trojan
+      - 美国 · Shadowsocks
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+  - name: FINAL
+    type: select
+    proxies:
+      - PROXY
+      - DIRECT
+
+rules:
+  - DOMAIN-SUFFIX,google.com,PROXY
+  - DOMAIN-SUFFIX,github.com,PROXY
+  - DOMAIN-SUFFIX,openai.com,PROXY
+  - DOMAIN-SUFFIX,cn,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT
+  - MATCH,FINAL
+
+profile:
+  store-selected: true
+
+# GUI 不认识的字段也会保留
+x-manager-note: "按自己的方式配置。"

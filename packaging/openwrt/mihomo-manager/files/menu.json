@@ -1,0 +1,8 @@
+{
+  "admin/services/mihomo-manager": {
+    "title": "Rivo",
+    "order": 60,
+    "action": { "type": "view", "path": "mihomo-manager/index-r17-rivo" },
+    "depends": { "acl": ["luci-app-mihomo-manager"] }
+  }
+}
