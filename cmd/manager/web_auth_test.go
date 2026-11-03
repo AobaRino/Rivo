@@ -126,7 +126,9 @@ func TestWebCrossSitePageNavigationDoesNotAuthorizeAPI(t *testing.T) {
 		t.Fatal(err)
 	}
 	login := httptest.NewRecorder()
-	a.setSession(login)
+	if err := a.setSession(login, httptest.NewRequest("POST", "https://router.test/api/auth/login", nil), false); err != nil {
+		t.Fatal(err)
+	}
 	cookie := login.Result().Cookies()[0]
 	h := a.handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { w.WriteHeader(http.StatusNoContent) }))
 	for _, tc := range []struct {
@@ -187,7 +189,9 @@ func TestLogoutCancelsActiveAPIRequest(t *testing.T) {
 		t.Fatal(e)
 	}
 	w := httptest.NewRecorder()
-	a.setSession(w)
+	if err := a.setSession(w, httptest.NewRequest("POST", "http://localhost/api/auth/login", nil), false); err != nil {
+		t.Fatal(err)
+	}
 	cookie := w.Result().Cookies()[0]
 	started, finished := make(chan struct{}), make(chan struct{})
 	h := a.handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { close(started); <-r.Context().Done(); close(finished) }))

@@ -1027,7 +1027,7 @@ export default function App() {
             <Badge tone="blue">
               {managed ? '托管内核' : routerMode ? '仅配置管理' : '模拟环境'}
             </Badge>
-            <SignOut />
+            <SignOut onError={fail} />
           </div>
         </header>
         <main>

@@ -31,6 +31,7 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
   })
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
+  const [remember, setRemember] = useState(false)
   const [token] = useState(() => {
     const value = new URLSearchParams(location.hash.slice(1)).get('setup') || ''
     return value
@@ -42,12 +43,15 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
   if (session.data?.authenticated) entered.current = true
   const setup = session.data?.setupRequired
   const login = useMutation({
-    mutationFn: () => request(setup ? 'setup' : 'login', { password, ...(setup ? { token } : {}) }),
+    mutationFn: () =>
+      request(setup ? 'setup' : 'login', { password, remember, ...(setup ? { token } : {}) }),
     onSuccess: (data) => {
       setPassword('')
       setConfirm('')
+      setRemember(false)
       client.setQueryData(['session'], data)
     },
+    onError: () => void client.invalidateQueries({ queryKey: ['session'] }),
   })
   useEffect(() => {
     const expired = () =>
@@ -97,6 +101,7 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
                   <input
                     autoFocus
                     type="password"
+                    name="password"
                     autoComplete={setup ? 'new-password' : 'current-password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -110,6 +115,7 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
                     确认密码
                     <input
                       type="password"
+                      name="confirm-password"
                       autoComplete="new-password"
                       value={confirm}
                       onChange={(e) => setConfirm(e.target.value)}
@@ -121,6 +127,20 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
                 {setup && confirm && password !== confirm && (
                   <p role="alert">两次输入的密码不一致。</p>
                 )}
+                <div className="auth-session-option">
+                  <label className="checkbox-line">
+                    <input
+                      type="checkbox"
+                      name="remember"
+                      checked={remember}
+                      onChange={(e) => setRemember(e.target.checked)}
+                      disabled={login.isPending}
+                      aria-describedby="auth-remember-help"
+                    />
+                    保持登录 30 天
+                  </label>
+                  <p id="auth-remember-help">勾选后，升级或重启服务仍保持登录。</p>
+                </div>
                 {login.error && <p role="alert">{login.error.message}</p>}
                 <button
                   className="button primary"
@@ -137,12 +157,13 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
     </>
   )
 }
-export function SignOut() {
+export function SignOut({ onError }: { onError: (error: Error) => void }) {
   const client = useQueryClient()
   const session = useQuery<Session>({ queryKey: ['session'], queryFn: () => request('session') })
   const logout = useMutation({
     mutationFn: () => request('logout'),
     onSuccess: (data) => client.setQueryData(['session'], data),
+    onError,
   })
   if (session.data?.development) return null
   return (

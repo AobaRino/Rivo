@@ -9,6 +9,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
+	"log"
 	"net"
 	"net/http"
 	"net/url"
@@ -30,9 +31,10 @@ type loginAttempt struct {
 	Until time.Time
 }
 type webSession struct {
-	expires time.Time
-	ctx     context.Context
-	cancel  context.CancelFunc
+	expires    time.Time
+	remembered bool
+	ctx        context.Context
+	cancel     context.CancelFunc
 }
 type webAuth struct {
 	mu          sync.Mutex
@@ -40,6 +42,7 @@ type webAuth struct {
 	credentials webCredentials
 	bootstrap   string
 	sessions    map[[32]byte]webSession
+	storeDirty  bool
 	attempts    map[string]loginAttempt
 	secure      bool
 	now         func() time.Time
@@ -85,6 +88,12 @@ func newWebAuth(dir string, secure bool) (*webAuth, error) {
 	} else {
 		return nil, err
 	}
+	if err := a.loadSessions(); err != nil {
+		// A damaged cache must not authorize anyone or prevent password login.
+		// The next verified login must replace it successfully before a cookie is issued.
+		a.storeDirty = true
+		log.Printf("Rivo: 保持登录记录无法载入，已拒绝已保存会话；请重新登录以重建记录: %v", err)
+	}
 	return a, nil
 }
 func (a *webAuth) cookieName() string {
@@ -105,37 +114,12 @@ func (a *webAuth) authenticated(r *http.Request) bool {
 	if !ok || !a.now().Before(session.expires) {
 		if ok {
 			session.cancel()
+			a.storeDirty = a.storeDirty || session.remembered
 		}
 		delete(a.sessions, key)
 		return false
 	}
 	return true
-}
-func (a *webAuth) setSession(w http.ResponseWriter) {
-	now := a.now()
-	for k, v := range a.sessions {
-		if !now.Before(v.expires) {
-			v.cancel()
-			delete(a.sessions, k)
-		}
-	}
-	if len(a.sessions) >= 64 {
-		var oldest [32]byte
-		first := true
-		for k, v := range a.sessions {
-			if first || v.expires.Before(a.sessions[oldest].expires) {
-				oldest = k
-				first = false
-			}
-		}
-		a.sessions[oldest].cancel()
-		delete(a.sessions, oldest)
-	}
-	token := randomToken()
-	expires := now.Add(12 * time.Hour)
-	ctx, cancel := context.WithDeadline(context.Background(), expires)
-	a.sessions[sha256.Sum256([]byte(token))] = webSession{expires, ctx, cancel}
-	http.SetCookie(w, &http.Cookie{Name: a.cookieName(), Value: token, Path: "/", HttpOnly: true, Secure: a.secure, SameSite: http.SameSiteStrictMode, Expires: expires, MaxAge: 43200})
 }
 func webSameOrigin(r *http.Request) bool {
 	if r.Header.Get("Sec-Fetch-Site") == "cross-site" {
@@ -220,14 +204,12 @@ func (a *webAuth) route(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.URL.Path == "/api/auth/logout" {
-		if c, e := r.Cookie(a.cookieName()); e == nil {
-			a.mu.Lock()
-			key := sha256.Sum256([]byte(c.Value))
-			if session, ok := a.sessions[key]; ok {
-				session.cancel()
-			}
-			delete(a.sessions, key)
-			a.mu.Unlock()
+		a.mu.Lock()
+		err := a.revokeSession(r)
+		a.mu.Unlock()
+		if err != nil {
+			failure(w, 500, "退出登录未完成：无法保存会话撤销记录，请重试")
+			return
 		}
 		http.SetCookie(w, &http.Cookie{Name: a.cookieName(), Path: "/", MaxAge: -1, HttpOnly: true, Secure: a.secure, SameSite: http.SameSiteStrictMode})
 		jsonResponse(w, 200, map[string]bool{"authenticated": false})
@@ -240,6 +222,7 @@ func (a *webAuth) route(w http.ResponseWriter, r *http.Request) {
 	var req struct {
 		Password string `json:"password"`
 		Token    string `json:"token,omitempty"`
+		Remember bool   `json:"remember"`
 	}
 	r.Body = http.MaxBytesReader(w, r.Body, 4096)
 	if !readJSON(w, r, &req) {
@@ -298,6 +281,9 @@ func (a *webAuth) route(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	delete(a.attempts, ip)
-	a.setSession(w)
+	if err := a.setSession(w, r, req.Remember); err != nil {
+		failure(w, 500, "登录会话无法保存，请检查存储后重试")
+		return
+	}
 	jsonResponse(w, 200, map[string]bool{"authenticated": true})
 }
