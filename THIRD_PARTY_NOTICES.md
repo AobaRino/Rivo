@@ -41,6 +41,15 @@
 - regexp2: https://github.com/dlclark/regexp2, MIT, v1.12.0. Used for bounded local previews with Mihomo's regular-expression dialect. The license is included in the Go module distribution.
 - Native order and filtering behavior was checked against Mihomo v1.19.33 `adapter/outboundgroup/groupbase.go` and `adapter/outboundgroup/parser.go`, and against the official executable. Subscription handling remains in Mihomo; no core implementation is bundled in the manager.
 
+## MetaCubeX keyword and regex data
+
+Preset supplements are filtered from MetaCubeX/meta-rules-dat (GPL-3.0), retaining
+only DOMAIN-KEYWORD and DOMAIN-REGEX for the selected service categories. The
+independent `rules` branch publishes source commits, hashes and the unchanged
+upstream license alongside each batch. See [rules/SOURCES.md](rules/SOURCES.md)
+and [rules/LICENSE.MetaCubeX](rules/LICENSE.MetaCubeX). The generator and manager
+integration are Rivo code; no Mihomo parser or matcher implementation was copied.
+
 ## Read-only implementation references
 
 These repositories informed the review. No code was copied from them into the application.

@@ -1,0 +1,52 @@
+name: Update rule supplements
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_sha:
+        description: Optional full MetaCubeX commit SHA (blank resolves the meta branch once)
+        required: false
+        type: string
+  schedule:
+    - cron: '17 4 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/rules/**'
+      - 'rules/**'
+      - '.github/workflows/rule-supplements.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rivo-rule-supplements
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'AobaRino/Rivo' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Test generator and atomic publication
+        run: node --test scripts/rules/*.test.mjs
+      - name: Generate and validate all categories
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          UPSTREAM_SHA: ${{ inputs.upstream_sha }}
+        shell: bash
+        run: |
+          args=(--output "$RUNNER_TEMP/rivo-rules-output")
+          if [[ -n "$UPSTREAM_SHA" ]]; then
+            args+=(--upstream-sha "$UPSTREAM_SHA")
+          fi
+          node scripts/rules/generate.mjs "${args[@]}"
+      - name: Publish one commit to the independent rules branch
+        run: node scripts/rules/publish.mjs --output "$RUNNER_TEMP/rivo-rules-output"

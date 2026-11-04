@@ -17,14 +17,29 @@ describe('MetaCubeX native rule preset', () => {
     expect(errors).toEqual([])
     expect(config!.rules).toEqual([
       'RULE-SET,metacubex-private-domain,DIRECT',
+      'RULE-SET,metacubex-private-domain-extra,DIRECT',
       'RULE-SET,metacubex-private-ip,DIRECT,no-resolve',
       'RULE-SET,metacubex-cn-domain,DIRECT',
+      'RULE-SET,metacubex-cn-domain-extra,DIRECT',
       'RULE-SET,metacubex-foreign-domain,PROXY',
+      'RULE-SET,metacubex-foreign-domain-extra,PROXY',
       'RULE-SET,metacubex-cn-ip,DIRECT',
       'MATCH,PROXY',
     ])
-    expect(Object.values(config!['rule-providers']!)).toHaveLength(5)
+    expect(Object.values(config!['rule-providers']!)).toHaveLength(8)
     for (const provider of Object.values(config!['rule-providers']!)) {
+      if (provider.behavior === 'classical') {
+        expect(provider).toMatchObject({
+          type: 'http',
+          format: 'text',
+          interval: 86400,
+          proxy: 'PROXY',
+        })
+        expect(provider.url).toMatch(
+          /^https:\/\/raw\.githubusercontent\.com\/AobaRino\/Rivo\/rules\/geosite\/.+\.list$/,
+        )
+        continue
+      }
       expect(provider).toMatchObject({
         type: 'http',
         format: 'mrs',
@@ -52,7 +67,7 @@ describe('MetaCubeX native rule preset', () => {
     expect(defaultPresetProxy(analyze(changed).config!)).toBe('AUTO')
     expect(analyze(changed).errors).toEqual([])
     expect(analyze(changed).config!.rules!.at(-1)).toBe('MATCH,AUTO')
-    expect(Object.keys(analyze(changed).config!['rule-providers']!)).toHaveLength(5)
+    expect(Object.keys(analyze(changed).config!['rule-providers']!)).toHaveLength(8)
     expect(changed).not.toContain('metacubex-foreign-domain,PROXY')
     expect(applyMetaRulePreset(changed, 'AUTO')).toBe(changed)
   })

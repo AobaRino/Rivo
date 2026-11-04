@@ -66,6 +66,18 @@ describe('service routing presets', () => {
     expect(rules.at(-1)).toBe('MATCH,PROXY')
     expect(rules).toContain('RULE-SET,metacubex-cn-ip,DIRECT')
     for (const provider of Object.values(config!['rule-providers']!)) {
+      if (provider.behavior === 'classical') {
+        expect(provider).toMatchObject({
+          type: 'http',
+          format: 'text',
+          interval: 86400,
+          proxy: 'PROXY',
+        })
+        expect(provider.url).toContain(
+          'https://raw.githubusercontent.com/AobaRino/Rivo/rules/geosite/',
+        )
+        continue
+      }
       expect(provider).toMatchObject({
         type: 'http',
         format: 'mrs',
@@ -108,8 +120,8 @@ describe('service routing presets', () => {
     const cleared = analyze(applyMetaRulePreset(next, 'PROXY', {}))
     expect(cleared.errors).toEqual([])
     expect(cleared.config!['proxy-groups']).toHaveLength(2)
-    expect(Object.keys(cleared.config!['rule-providers']!)).toHaveLength(6)
-    expect(cleared.config!.rules).toHaveLength(6)
+    expect(Object.keys(cleared.config!['rule-providers']!)).toHaveLength(9)
+    expect(cleared.config!.rules).toHaveLength(9)
   })
 
   it('keeps deselected groups and rule providers used by other configuration', () => {

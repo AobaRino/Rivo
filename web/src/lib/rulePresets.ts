@@ -1,3 +1,4 @@
+import catalog from '../../../rules/catalog.json'
 import { isAlias, isNode, isSeq } from 'yaml'
 import {
   analyze,
@@ -22,6 +23,7 @@ import {
   serviceRules,
 } from './serviceRules'
 import type { ServiceProvider, ServiceSelections } from './serviceRules'
+import { extraMarker, extraRuleURL, isMetaRuleExtra, upgradeMetaRuleExtras } from './metaRuleExtras'
 
 export const metaRulesSource = 'https://github.com/MetaCubeX/meta-rules-dat'
 const baseURL = 'https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/meta/geo'
@@ -29,7 +31,7 @@ export const metaRuleSets = [
   {
     name: 'metacubex-private-domain',
     label: '局域网域名',
-    file: 'geosite/private',
+    file: `geosite/${catalog.baseDomains[0]}`,
     behavior: 'domain',
     direct: true,
   },
@@ -43,14 +45,14 @@ export const metaRuleSets = [
   {
     name: 'metacubex-cn-domain',
     label: '国内域名',
-    file: 'geosite/cn',
+    file: `geosite/${catalog.baseDomains[1]}`,
     behavior: 'domain',
     direct: true,
   },
   {
     name: 'metacubex-foreign-domain',
     label: '国外域名',
-    file: 'geosite/geolocation-!cn',
+    file: `geosite/${catalog.baseDomains[2]}`,
     behavior: 'domain',
     direct: false,
   },
@@ -62,9 +64,13 @@ export function metaRuleURL(file: string) {
 }
 
 export function metaRuleLabel(provider: RuleProvider) {
-  return [...metaRuleSets, ...serviceRules.flatMap(serviceProviders)].find(
-    (entry) => provider.url === metaRuleURL(entry.file),
-  )?.label
+  const entries = [...metaRuleSets, ...serviceRules.flatMap(serviceProviders)]
+  const original = entries.find((entry) => provider.url === metaRuleURL(entry.file))
+  if (original) return original.label
+  const extra = entries.find(
+    (entry) => entry.behavior === 'domain' && provider.url === extraRuleURL(entry.file),
+  )
+  return extra ? `${extra.label} · 关键词与正则` : undefined
 }
 
 // Exclude service groups and any outbound depending on them, so generated
@@ -295,6 +301,7 @@ export function applyMetaRulePreset(
   }
   // Only remove our unused generated items; external references keep them alive.
   for (const [name, provider] of Object.entries(analyze(next).config!['rule-providers'] || {})) {
+    if (provider[extraMarker]) continue
     if (!ownedService(provider) || plan.providers.some((entry) => entry.name === name)) continue
     if (!ruleProviderReferences(analyze(next).config!, name).length)
       next = removeRuleProvider(next, name)
@@ -312,7 +319,17 @@ export function applyMetaRulePreset(
       }
     }
   }
+  next = upgradeMetaRuleExtras(next)
+  for (const [name, provider] of Object.entries(analyze(next).config!['rule-providers'] || {})) {
+    if (
+      provider[extraMarker] &&
+      isMetaRuleExtra(provider) &&
+      !ruleProviderReferences(analyze(next).config!, name).length
+    )
+      next = removeRuleProvider(next, name)
+  }
   const errors = analyze(next).errors
   if (errors.length) throw new Error(errors.join('；'))
+  if (JSON.stringify(analyze(next).config) === JSON.stringify(config)) return text
   return next
 }

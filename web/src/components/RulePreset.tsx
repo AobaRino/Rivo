@@ -17,6 +17,11 @@ import type { ServiceSelections } from '../lib/serviceRules'
 import { ruleParts } from '../lib/rules'
 import { ServicePicker } from './ServicePicker'
 import { Modal } from './Modal'
+import {
+  extraProviderName,
+  needsMetaRuleExtras,
+  upgradeMetaRuleExtras,
+} from '../lib/metaRuleExtras'
 
 type Props = {
   config: Config
@@ -27,6 +32,7 @@ type Props = {
 export function RulePreset({ config, disabled, onEdit }: Props) {
   const [open, setOpen] = useState(false)
   const selected = readServiceSelections(config)
+  const needsExtras = needsMetaRuleExtras(config)
   return (
     <>
       <section className="panel rule-preset" aria-labelledby="rule-preset-heading">
@@ -35,16 +41,28 @@ export function RulePreset({ config, disabled, onEdit }: Props) {
             <h2 id="rule-preset-heading">MetaCubeX 规则预设</h2>
             <p>国内直连、国外代理。可为 Steam、微软、AI、流媒体等服务单独选择出口。</p>
           </div>
-          <button
-            className="button primary small"
-            disabled={disabled}
-            onClick={() => setOpen(true)}
-          >
-            配置分流预设
-          </button>
+          <div className="action-row">
+            {needsExtras && (
+              <button
+                className="button small"
+                disabled={disabled}
+                onClick={() => onEdit(upgradeMetaRuleExtras)}
+              >
+                补全关键词与正则
+              </button>
+            )}
+            <button
+              className="button primary small"
+              disabled={disabled}
+              onClick={() => setOpen(true)}
+            >
+              配置分流预设
+            </button>
+          </div>
         </div>
         <div className="rule-preset-info">
           <span>默认每 24 小时更新</span>
+          <span>{needsExtras ? '可补全关键词与正则' : '支持关键词与正则'}</span>
           <span>已启用 {Object.keys(selected).length} 个服务分组</span>
           <a href={metaRulesSource} target="_blank" rel="noreferrer">
             查看规则来源 <ExternalLink size={12} />
@@ -89,9 +107,31 @@ function PresetDialog({ config, disabled, onEdit, onClose }: Props & { onClose: 
     }
   }, [config, selected])
   const basicRules = metaPresetRules(proxy)
-  const rules = [...basicRules.slice(0, 2), ...(plan.value?.rules || []), ...basicRules.slice(2)]
+  const entries = [...metaRuleSets, ...(plan.value?.providers || [])]
+  const baseRules = [
+    ...basicRules.slice(0, 2),
+    ...(plan.value?.rules || []),
+    ...basicRules.slice(2),
+  ]
+  const rules = baseRules.flatMap((rule) => {
+    const parts = ruleParts(rule)
+    return entries.some((entry) => entry.name === parts.payload && entry.behavior === 'domain')
+      ? [
+          rule,
+          rule.replace(
+            `RULE-SET,${parts.payload},`,
+            `RULE-SET,${extraProviderName(parts.payload)},`,
+          ),
+        ]
+      : [rule]
+  })
   const providerLabels = new Map(
-    [...metaRuleSets, ...(plan.value?.providers || [])].map((entry) => [entry.name, entry.label]),
+    entries.flatMap((entry): [string, string][] => [
+      [entry.name, entry.label],
+      ...(entry.behavior === 'domain'
+        ? [[extraProviderName(entry.name), `${entry.label} · 关键词与正则`] as [string, string]]
+        : []),
+    ]),
   )
   const canGenerate = !plan.error && groups.some((group) => group.name === proxy)
   return (
@@ -164,8 +204,9 @@ function PresetDialog({ config, disabled, onEdit, onClose }: Props & { onClose: 
             </ol>
           </details>
           <p className="rule-preset-note">
-            {5 + (plan.value?.providers.length || 0)} 个 HTTP 规则集，MRS 格式，每 24 小时更新。
-            更新由 Mihomo 执行，本地预览不下载。服务组包含已有代理组、自建节点和订阅节点。
+            域名与 IP 使用 MRS，关键词与正则使用 Classical 补充集，默认每 24 小时更新。 补充集由
+            Rivo 每天从 MetaCubeX 提取，下载与更新由 Mihomo 执行。不包含广告拦截。
+            仅补全现有预设时，可在卡片上点击「补全关键词与正则」，保留现有规则顺序和出口。
           </p>
           <p className="rule-preset-impact">
             将替换当前 {config.rules?.length || 0}{' '}
