@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "upstream": {
+    "repository": "MetaCubeX/meta-rules-dat",
+    "ref": "meta"
+  },
+  "baseDomains": [
+    "private",
+    "cn",
+    "geolocation-!cn"
+  ],
+  "services": {
+    "steam": {
+      "domains": [
+        "steam"
+      ],
+      "directDomains": [
+        "steam@cn"
+      ]
+    },
+    "games": {
+      "domains": [
+        "category-games"
+      ],
+      "directDomains": [
+        "category-games@cn",
+        "category-game-platforms-download"
+      ]
+    },
+    "microsoft": {
+      "domains": [
+        "microsoft"
+      ],
+      "directDomains": [
+        "microsoft@cn"
+      ]
+    },
+    "onedrive": {
+      "domains": [
+        "onedrive"
+      ]
+    },
+    "apple": {
+      "domains": [
+        "apple"
+      ],
+      "directDomains": [
+        "apple-cn"
+      ]
+    },
+    "openai": {
+      "domains": [
+        "openai"
+      ]
+    },
+    "claude": {
+      "domains": [
+        "anthropic"
+      ]
+    },
+    "gemini": {
+      "domains": [
+        "google-gemini"
+      ]
+    },
+    "copilot": {
+      "domains": [
+        "bing"
+      ]
+    },
+    "grok": {
+      "domains": [
+        "xai"
+      ]
+    },
+    "ai": {
+      "domains": [
+        "category-ai-!cn"
+      ]
+    },
+    "youtube": {
+      "domains": [
+        "youtube"
+      ]
+    },
+    "netflix": {
+      "domains": [
+        "netflix"
+      ],
+      "ips": [
+        "netflix"
+      ]
+    },
+    "disney": {
+      "domains": [
+        "disney"
+      ]
+    },
+    "spotify": {
+      "domains": [
+        "spotify"
+      ]
+    },
+    "appletv": {
+      "domains": [
+        "apple-tvplus"
+      ]
+    },
+    "tiktok": {
+      "domains": [
+        "tiktok"
+      ]
+    },
+    "telegram": {
+      "domains": [
+        "telegram"
+      ],
+      "ips": [
+        "telegram"
+      ]
+    },
+    "discord": {
+      "domains": [
+        "discord"
+      ]
+    },
+    "google": {
+      "domains": [
+        "google"
+      ],
+      "ips": [
+        "google"
+      ]
+    },
+    "github": {
+      "domains": [
+        "github"
+      ]
+    },
+    "docker": {
+      "domains": [
+        "docker",
+        "category-container"
+      ]
+    },
+    "developer": {
+      "domains": [
+        "category-dev"
+      ]
+    }
+  }
+}
