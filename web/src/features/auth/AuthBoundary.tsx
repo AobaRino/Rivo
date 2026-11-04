@@ -3,30 +3,14 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { LockKeyhole } from 'lucide-react'
 import { APP_NAME, BrandMark } from '../../components/Brand'
 import { AppearanceToggle } from '../../app/Appearance'
-import { apiFetch } from '../../lib/transport'
+import { requestAuth, type Session } from './request'
 import './auth.css'
 
-type Session = { authenticated: boolean; setupRequired?: boolean; development?: boolean }
-async function request(path: string, body?: object): Promise<Session> {
-  const response = await apiFetch(
-    `/api/auth/${path}`,
-    body
-      ? {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(body),
-        }
-      : undefined,
-  )
-  const data = await response.json()
-  if (!response.ok) throw new Error(data.error || '无法连接登录服务')
-  return data
-}
 export function AuthBoundary({ children }: { children: ReactNode }) {
   const client = useQueryClient()
   const session = useQuery({
     queryKey: ['session'],
-    queryFn: () => request('session'),
+    queryFn: () => requestAuth('session'),
     retry: false,
     refetchInterval: 60000,
   })
@@ -45,7 +29,7 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
   const setup = session.data?.setupRequired
   const login = useMutation({
     mutationFn: () =>
-      request(setup ? 'setup' : 'login', { password, remember, ...(setup ? { token } : {}) }),
+      requestAuth(setup ? 'setup' : 'login', { password, remember, ...(setup ? { token } : {}) }),
     onSuccess: (data) => {
       setPassword('')
       setConfirm('')
@@ -163,9 +147,12 @@ export function AuthBoundary({ children }: { children: ReactNode }) {
 }
 export function SignOut({ onError }: { onError: (error: Error) => void }) {
   const client = useQueryClient()
-  const session = useQuery<Session>({ queryKey: ['session'], queryFn: () => request('session') })
+  const session = useQuery<Session>({
+    queryKey: ['session'],
+    queryFn: () => requestAuth('session'),
+  })
   const logout = useMutation({
-    mutationFn: () => request('logout'),
+    mutationFn: () => requestAuth('logout'),
     onSuccess: (data) => client.setQueryData(['session'], data),
     onError,
   })
