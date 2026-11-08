@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-07T11:08:10.193Z",
+  "generatedAt": "2026-11-08T11:20:38.821Z",
   "generator": {
     "version": 1,
     "repository": "AobaRino/Rivo",
@@ -9,8 +9,8 @@
   "upstream": {
     "repository": "MetaCubeX/meta-rules-dat",
     "ref": "meta",
-    "commit": "7226545410c4dbb3854a5235803a26d86a298072",
-    "committedAt": "2026-11-07T02:10:08Z"
+    "commit": "26cf4440307754d2c2f65cf2f0457c0ae814900f",
+    "committedAt": "2026-11-08T01:42:29Z"
   },
   "catalogSha256": "bd67aaf60178b4f8529527da4fa5cb765782f1ac112cdfa0727392c702f851ac",
   "license": {
@@ -23,12 +23,12 @@
     {
       "tag": "anthropic",
       "path": "geosite/anthropic.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/anthropic.list",
-      "sourceSha256": "9abc4c8ef9ade13f24d72f9adc8f6164db3278e44cb05e01ec9ae573d55733db",
-      "sha256": "1647ded9c6331f805cefbd27d0697b55074a3fc8ec144b98481231261ab177da",
-      "sourceRules": 19,
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/anthropic.list",
+      "sourceSha256": "3ca6cf7858c12a273c149326cc90086e20c5121188b112fb7c55f3d4f6911cd2",
+      "sha256": "c5ba96889a48cf57c6a85eac8fd72db857b4edddb6ce9ab01a600d9286d40b4c",
+      "sourceRules": 21,
       "sourceCounts": {
-        "DOMAIN": 1,
+        "DOMAIN": 3,
         "DOMAIN-SUFFIX": 18,
         "DOMAIN-KEYWORD": 0,
         "DOMAIN-REGEX": 0
@@ -42,9 +42,9 @@
     {
       "tag": "apple",
       "path": "geosite/apple.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/apple.list",
-      "sourceSha256": "deabff64ccd9af66eb481b8db117deed882ed40e4c484232971b081a07f8d4e1",
-      "sha256": "14e471580a1a7315b26198ee50b53a0f328b90aca5c8e6c26243abb9072af725",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/apple.list",
+      "sourceSha256": "790870a83fe699f573e682450215b410ea1f6ff4600b84d14719fd57b47ea75a",
+      "sha256": "df3c698f25cc0e0723623bb2ba32b2e2eb166f055778231828d3df09f31094c6",
       "sourceRules": 1794,
       "sourceCounts": {
         "DOMAIN": 254,
@@ -61,9 +61,9 @@
     {
       "tag": "apple-cn",
       "path": "geosite/apple-cn.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/apple-cn.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/apple-cn.list",
       "sourceSha256": "ed78d04e9d7b814a46027b40e20f33623c1776d9f1b3b323e2ba514c629ed154",
-      "sha256": "e7af6c255bbbcb0918666c7ce42ce2a17d5deca329c9e5d528650a86af589689",
+      "sha256": "dc13e81e8465f0d52c774d7b611652a327050b8039d31cb9703fd0aead1bedc8",
       "sourceRules": 165,
       "sourceCounts": {
         "DOMAIN": 165,
@@ -80,9 +80,9 @@
     {
       "tag": "apple-tvplus",
       "path": "geosite/apple-tvplus.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/apple-tvplus.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/apple-tvplus.list",
       "sourceSha256": "478d2fff2b63b1f5e7bbc3fdc19a51e49134f455c025fdeceaa6b8fd74741161",
-      "sha256": "1b34630d3428022e3d56c88301442f8b3b0dcde62cd16671693c2a8ee4096675",
+      "sha256": "4572a195de187759c60b43cf76f239f4e4f024b67da6eb5b48cc925acd9676c6",
       "sourceRules": 8,
       "sourceCounts": {
         "DOMAIN": 7,
@@ -99,9 +99,9 @@
     {
       "tag": "bing",
       "path": "geosite/bing.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/bing.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/bing.list",
       "sourceSha256": "f18a831cbf68487e633449aabeedf390265c9b45baf67592b79f4313a64fbba2",
-      "sha256": "59f3f54988ab88a9ee781f5fd3ae71f610271bd05e903f41473abebe3f699f51",
+      "sha256": "ef280d81109d032c6f9e648a050047f7dbc18307fdb34e2c4bb5cb29d1a2f0ad",
       "sourceRules": 41,
       "sourceCounts": {
         "DOMAIN": 2,
@@ -118,13 +118,13 @@
     {
       "tag": "category-ai-!cn",
       "path": "geosite/category-ai-!cn.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/category-ai-!cn.list",
-      "sourceSha256": "72033fb5004fda73a1ffae9ac918e1fc3e7473f4e4373589ecb7a8d37d4a0701",
-      "sha256": "561de7908de1ca323e1eaff07289c26229f2f96df3f4ebd0619dcab03da43d89",
-      "sourceRules": 214,
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/category-ai-!cn.list",
+      "sourceSha256": "d3d93aa835fdc89db78187c735f7b34c948b2035766ecff657a7a1dc825e294f",
+      "sha256": "61f9666890938f105ae6f0306194d388258bc3b5f49cd7446489feaef599b010",
+      "sourceRules": 218,
       "sourceCounts": {
-        "DOMAIN": 34,
-        "DOMAIN-SUFFIX": 179,
+        "DOMAIN": 37,
+        "DOMAIN-SUFFIX": 180,
         "DOMAIN-KEYWORD": 0,
         "DOMAIN-REGEX": 1
       },
@@ -137,9 +137,9 @@
     {
       "tag": "category-container",
       "path": "geosite/category-container.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/category-container.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/category-container.list",
       "sourceSha256": "f4442830a412285b28db55ceb845ea445fc91676931bd6f5ffacf8cac0b7e722",
-      "sha256": "0891260f0bcf84c08ef08c7ad91c18dfba72b49c9be8666e90ccfe90a5b3ece4",
+      "sha256": "08842069a1d54f2184ec4303bc77437145656a4efd68cdb13592f40c34b6f585",
       "sourceRules": 10,
       "sourceCounts": {
         "DOMAIN": 0,
@@ -156,12 +156,12 @@
     {
       "tag": "category-dev",
       "path": "geosite/category-dev.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/category-dev.list",
-      "sourceSha256": "544c0a351c6956d3baea892604dbd7b06574aba14269e3574d3fb1f2d2c20f0d",
-      "sha256": "412b15ef5d2b63712dbd339f3ae48ad8a3af21698f914da9be8edc8fb6394aeb",
-      "sourceRules": 690,
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/category-dev.list",
+      "sourceSha256": "0a6fab51a7e9e1c78799c65cec97486dedcdfb05f6798cceafb4a913f647366d",
+      "sha256": "5cf6c6ee30853e398279f641c769b4de40486178d30eb5f3d20398ed52d08cdc",
+      "sourceRules": 691,
       "sourceCounts": {
-        "DOMAIN": 91,
+        "DOMAIN": 92,
         "DOMAIN-SUFFIX": 598,
         "DOMAIN-KEYWORD": 0,
         "DOMAIN-REGEX": 1
@@ -175,9 +175,9 @@
     {
       "tag": "category-game-platforms-download",
       "path": "geosite/category-game-platforms-download.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/category-game-platforms-download.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/category-game-platforms-download.list",
       "sourceSha256": "871ffe9c930f5252b86339fbedc5f293df9ddaa7a137d413b67d80ec2687e7df",
-      "sha256": "eb5645609f3113064ab50c192f5e8f586274c9004e19fbdc54cccd217b4a6ea4",
+      "sha256": "ed7dfdacf5e442509b0f2547b94f9b4fb347a9e5f419f7e92a0870e21008f5bb",
       "sourceRules": 492,
       "sourceCounts": {
         "DOMAIN": 490,
@@ -194,9 +194,9 @@
     {
       "tag": "category-games",
       "path": "geosite/category-games.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/category-games.list",
-      "sourceSha256": "1e2d36a50f597107d1418e7d1c5dea29fd64c46cfa714cd09075f982b79c3007",
-      "sha256": "518239052f0719bd8e06e612c9a1a7efad2bcf18afde13f54b2065a63eeeaa8b",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/category-games.list",
+      "sourceSha256": "1fc58e0a3b13e4933a7bf8e7de350d3238225d58983411123c7e4b439d6a9cac",
+      "sha256": "25c4154ddae0de8ff6fd74b7bae5808065a35673ac8b583c4aec164a8d26cc8a",
       "sourceRules": 1063,
       "sourceCounts": {
         "DOMAIN": 99,
@@ -213,9 +213,9 @@
     {
       "tag": "category-games@cn",
       "path": "geosite/category-games@cn.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/category-games@cn.list",
-      "sourceSha256": "72a73438b4d95325946e8641993babc2b77fa35e34cd392fb713d628145ac9dc",
-      "sha256": "5fd589c21a45c1e89154d62a6c3a970a948899cafd8f930d516896b1a2cc6e39",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/category-games@cn.list",
+      "sourceSha256": "027473062b296ede0fbbb0db078d9c9b9ffb4100f6e35c4451fff44c16c82bea",
+      "sha256": "923ee892689388cb548da93ae66f5a73920ee59e02709c8f08af17c4686baf2a",
       "sourceRules": 40,
       "sourceCounts": {
         "DOMAIN": 4,
@@ -232,9 +232,9 @@
     {
       "tag": "cn",
       "path": "geosite/cn.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/cn.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/cn.list",
       "sourceSha256": "64d115b13c843307c2fc29378972cc1be7950ce5cde85e46d7cd4c6be75abacd",
-      "sha256": "fb0b0d0e8b64563dc0480321d96bed211b640808236c616b4dbb912eb397dcb9",
+      "sha256": "fb328f002b4de730bee5a887e1b0694bb0ed4786a520c33f7e77a1a3f462e4ba",
       "sourceRules": 110177,
       "sourceCounts": {
         "DOMAIN": 0,
@@ -251,9 +251,9 @@
     {
       "tag": "discord",
       "path": "geosite/discord.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/discord.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/discord.list",
       "sourceSha256": "d79aac40ce905d022c13be738352ff38806af9bc3a8e49ad6848a215bc2fe9c6",
-      "sha256": "d74758f2ddd799cee71795a128822dccce5fb224f61852fadfda9c4ca17ef758",
+      "sha256": "b85228ddeb577cea385be83ad6e186dc3f4fc6d8df3de52e3a875f2d3e13264d",
       "sourceRules": 28,
       "sourceCounts": {
         "DOMAIN": 2,
@@ -270,9 +270,9 @@
     {
       "tag": "disney",
       "path": "geosite/disney.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/disney.list",
-      "sourceSha256": "5d2f6908f4ac609b05531c253bf18f5f43e9671f25f37f47c61e563a271d9e6c",
-      "sha256": "63eaaa9cce8461a47f4d2bb72b420312a82bfca23cd2c307340c82b1933b278f",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/disney.list",
+      "sourceSha256": "e6d573970fc3025103e4bd9ac84a526fa33229223cc1d38fefda727a31265197",
+      "sha256": "0473bc6ae1d6ba5db44d66eb2ed98a2399ce78ecf07f164ce45a0a9fe360bf42",
       "sourceRules": 225,
       "sourceCounts": {
         "DOMAIN": 6,
@@ -289,9 +289,9 @@
     {
       "tag": "docker",
       "path": "geosite/docker.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/docker.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/docker.list",
       "sourceSha256": "f8fbd25818467c6c60140a3d50da8c45ceb1d993a49015fe955ac79bb19eb204",
-      "sha256": "3fbde7209d1b16c44ee332d54f4c256d35abb819fe64ba8f4d93bf3b89eb939e",
+      "sha256": "ae02df1e606a9c54cf6db9e913a76c641ddec6e7a5e4a946e3497a2f5361fdb9",
       "sourceRules": 6,
       "sourceCounts": {
         "DOMAIN": 2,
@@ -308,13 +308,13 @@
     {
       "tag": "geolocation-!cn",
       "path": "geosite/geolocation-!cn.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/geolocation-!cn.list",
-      "sourceSha256": "be4cebd5ccddd058411e63485494c0c3fb2148101e3673f0ae336a22fcfdd1eb",
-      "sha256": "41afbedcc6ef9e5ab18493547e7fbbb402f526712c15b546d7b1b6f5fae7c063",
-      "sourceRules": 27449,
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/geolocation-!cn.list",
+      "sourceSha256": "e5c82ecae522379e4fe16e57a5f4a33590545f34f6ce8067094f834f58922afb",
+      "sha256": "c408d6f8e082de77ff24c4f36c6e852655aad6b056d64d43566eae18d51493f4",
+      "sourceRules": 27453,
       "sourceCounts": {
-        "DOMAIN": 768,
-        "DOMAIN-SUFFIX": 26530,
+        "DOMAIN": 771,
+        "DOMAIN-SUFFIX": 26531,
         "DOMAIN-KEYWORD": 0,
         "DOMAIN-REGEX": 151
       },
@@ -327,12 +327,12 @@
     {
       "tag": "github",
       "path": "geosite/github.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/github.list",
-      "sourceSha256": "4ae6d52c0fa106f700585cca018905ba2b3ac296d57d83838c23c512eb269f0b",
-      "sha256": "dd272dd46271392237edf3bc91355814bbd3fbc5f4d649dfc751c0d4146f0b02",
-      "sourceRules": 65,
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/github.list",
+      "sourceSha256": "2a19cc9b1611a620fff70ab59102b41e222d914c5d16ddb1cb92d72d10c1dc05",
+      "sha256": "1ed5580462102d5bd4c68e60836ca3ae0f55c151021376bc7f71f3b226591784",
+      "sourceRules": 66,
       "sourceCounts": {
-        "DOMAIN": 32,
+        "DOMAIN": 33,
         "DOMAIN-SUFFIX": 33,
         "DOMAIN-KEYWORD": 0,
         "DOMAIN-REGEX": 0
@@ -346,9 +346,9 @@
     {
       "tag": "google",
       "path": "geosite/google.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/google.list",
-      "sourceSha256": "9c32396dbae2a6f73c788dff5cb7832d01bd1e66c6d287b158f3d36743235499",
-      "sha256": "534b58d05521ddc58f1a584dce4194024bdd606bccd602f4b4abf2a3235d9079",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/google.list",
+      "sourceSha256": "bc1c554165376c0c994e4142cc77e3793e148cb7c45f37c009d2618b9942c007",
+      "sha256": "cff10bf83c265303efddcf6c6f615cc5e32286fdc86114baf12a14f3666c1514",
       "sourceRules": 1080,
       "sourceCounts": {
         "DOMAIN": 239,
@@ -365,9 +365,9 @@
     {
       "tag": "google-gemini",
       "path": "geosite/google-gemini.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/google-gemini.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/google-gemini.list",
       "sourceSha256": "7c9d8117d520f8e3dca5e7d4706a960d55a891b34e2b5daf4dcc625815a967e4",
-      "sha256": "53b7cef718b0ee342ce5e594cb2429cb42449354bb77de99b7125bc13e381278",
+      "sha256": "c95a0208116c2f74cd30b0466204c720405b5395f855b79b0d8a6d3e57f9ecf6",
       "sourceRules": 49,
       "sourceCounts": {
         "DOMAIN": 16,
@@ -384,12 +384,12 @@
     {
       "tag": "microsoft",
       "path": "geosite/microsoft.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/microsoft.list",
-      "sourceSha256": "d0431ee52282da3a760d134a9343152ee3321d1584b879761b0fa3824dea6d30",
-      "sha256": "babb7a57efc5fbce9d20a43535191cc422379608c0f0c9d478ea2eaa87ec33ff",
-      "sourceRules": 758,
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/microsoft.list",
+      "sourceSha256": "1c4f3b0a2a0f4bfb9bf42333f349423d5b2599753ff9adab6e9314ce6151588c",
+      "sha256": "1313a66feb6cd5d17ce69be78234b872d310dde02fbda4e837b8fa790441a7aa",
+      "sourceRules": 759,
       "sourceCounts": {
-        "DOMAIN": 117,
+        "DOMAIN": 118,
         "DOMAIN-SUFFIX": 638,
         "DOMAIN-KEYWORD": 3,
         "DOMAIN-REGEX": 0
@@ -403,9 +403,9 @@
     {
       "tag": "microsoft@cn",
       "path": "geosite/microsoft@cn.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/microsoft@cn.list",
-      "sourceSha256": "47ecb2cce28df8fc652e16b9a91497828992ef9818afa5c886dac93ebe32680b",
-      "sha256": "8bdb3937740d6ae15b2d866706020d2778044f440f320d94e28e7d6eceb7f106",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/microsoft@cn.list",
+      "sourceSha256": "85c62f2ed6f4b5a28873e027b30e321cfa8e6e51199611089f7db272b81af9d6",
+      "sha256": "55b9657b9b867b20251adfa2b0824d89020ddafdad8842d89449ef3786e6730c",
       "sourceRules": 189,
       "sourceCounts": {
         "DOMAIN": 50,
@@ -422,9 +422,9 @@
     {
       "tag": "netflix",
       "path": "geosite/netflix.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/netflix.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/netflix.list",
       "sourceSha256": "6b76f4f391dd5beefb316383c65a2c587ff2ee8ace61e49106dab438d3ab9344",
-      "sha256": "00853183460a15440c0c01ea70a4b202232b90867c1c15ee0bd47346262ec058",
+      "sha256": "ab256cf0aa125ce3af3723dbcc63205041a819b37b5717b229a5e465168c3fc8",
       "sourceRules": 28,
       "sourceCounts": {
         "DOMAIN": 0,
@@ -441,9 +441,9 @@
     {
       "tag": "onedrive",
       "path": "geosite/onedrive.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/onedrive.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/onedrive.list",
       "sourceSha256": "2a78a17c0f019594df528b6adfe567ee110e2908a5aac0be5959b77401c0f83d",
-      "sha256": "dce80c074020afad903779e4275b8f32dce327b9cc843829aedb9b7c6617e385",
+      "sha256": "58cc253c0d652964135bb7d6042cb61bc405d4beccb51bf45ec6e2f346262579",
       "sourceRules": 19,
       "sourceCounts": {
         "DOMAIN": 0,
@@ -460,9 +460,9 @@
     {
       "tag": "openai",
       "path": "geosite/openai.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/openai.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/openai.list",
       "sourceSha256": "ab4b25c0dd156f34d31c02b91f73384c5bb0f4cc508052906da3b6338c336e80",
-      "sha256": "12c64eb145ad2dbc9f52709b611669bc1871d36772910923fdf560d9e95974ef",
+      "sha256": "7cc91a6f7f06ccea3b0582ecf6555cbb2d03952ad5bfc04534bcea867408da57",
       "sourceRules": 25,
       "sourceCounts": {
         "DOMAIN": 10,
@@ -479,9 +479,9 @@
     {
       "tag": "private",
       "path": "geosite/private.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/private.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/private.list",
       "sourceSha256": "01fbefdf20585ec8fde7747f4f9b8edcf5d76c55d39eb35b082021b57af6cff4",
-      "sha256": "a37ff3544e3d6f74aebbd29d365329df414d0581877b34210246d14f26b64e5b",
+      "sha256": "8924b3e0d107bcd2e5ddbfd27780ba794b00ff4289534eb5637940b68e4f4698",
       "sourceRules": 133,
       "sourceCounts": {
         "DOMAIN": 14,
@@ -498,9 +498,9 @@
     {
       "tag": "spotify",
       "path": "geosite/spotify.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/spotify.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/spotify.list",
       "sourceSha256": "75fdf65b60e757064eb8d86026ca863b7341af62f58454493f858138a91ce150",
-      "sha256": "69f55032cc4b7ba7b1a77bccd4b48b56e9acdc4a2b8624392ffa3fe40e736f41",
+      "sha256": "5d6910899d9b3f81856cd4141da6fe8b88bbf03295a923428e7561f328919f53",
       "sourceRules": 28,
       "sourceCounts": {
         "DOMAIN": 10,
@@ -517,9 +517,9 @@
     {
       "tag": "steam",
       "path": "geosite/steam.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/steam.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/steam.list",
       "sourceSha256": "d1e5e1981ea00317b7f691da269cf53cd1110aeda34d43cb3acd7da521e2ad23",
-      "sha256": "a9c13a8746d58b3f964e31a665202ade0815cbffed92566da917fa0bd079bcb0",
+      "sha256": "d9f936b7c3fd205a4f339d4d1901822ad2bf2a1d5531f9a29cc18bb13620ad13",
       "sourceRules": 61,
       "sourceCounts": {
         "DOMAIN": 19,
@@ -536,9 +536,9 @@
     {
       "tag": "steam@cn",
       "path": "geosite/steam@cn.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/steam@cn.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/steam@cn.list",
       "sourceSha256": "79e907235e9b2e7963fda08fddc3f0bd75b0a74763e831bb201456779b1505d5",
-      "sha256": "d8e168df550f13c936b6c5bd46b8f3c5448ca75a226332bb6e77f8f5b0c861a7",
+      "sha256": "955c36da570b6ff90a3cfead464fe65cd441c38ff1d34e77cf826a386afd268e",
       "sourceRules": 19,
       "sourceCounts": {
         "DOMAIN": 3,
@@ -555,9 +555,9 @@
     {
       "tag": "telegram",
       "path": "geosite/telegram.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/telegram.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/telegram.list",
       "sourceSha256": "619df30317e41c5958311c5d4f76abe1bfa45ae4ba399129a0fec2fe4edd43d9",
-      "sha256": "2229ea5d3f2d50f35fd0ea565344aeb141812be9d75b9bd32e497392a59b49f8",
+      "sha256": "58584a8455ad677925d8bdc0f798e6e1ac012a823da74dc356b2243b77a4e1fc",
       "sourceRules": 21,
       "sourceCounts": {
         "DOMAIN": 0,
@@ -574,9 +574,9 @@
     {
       "tag": "tiktok",
       "path": "geosite/tiktok.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/tiktok.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/tiktok.list",
       "sourceSha256": "ee758feb97468bfeb83cd0fceca9983f815021042972757850bffd2e2523f740",
-      "sha256": "889261cf9cf42e572c29b3c530d8daff51ff0879937a763f8d8cc5ecf1e65bca",
+      "sha256": "10089417a651eb78e9b762bdec831c68e383dfba174e98a67b32441d0e0444d4",
       "sourceRules": 40,
       "sourceCounts": {
         "DOMAIN": 6,
@@ -593,13 +593,13 @@
     {
       "tag": "xai",
       "path": "geosite/xai.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/xai.list",
-      "sourceSha256": "47bb355be9b4b04520394af5c5e8a6d9882709438b03c72e1d9cf4e9f17e5760",
-      "sha256": "57e6184d5383a2a55cbbc506efce4796f86bc6ec2bc103bfab0304be120a1ba7",
-      "sourceRules": 4,
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/xai.list",
+      "sourceSha256": "57efbb43c4eeedb41fa54182aea6b90907cdcde312b75e657593d6b38d3ded1f",
+      "sha256": "6c4a8f008341be3adb4aac4b47a714315ec718b540d443b0b09bde3be2971939",
+      "sourceRules": 5,
       "sourceCounts": {
         "DOMAIN": 0,
-        "DOMAIN-SUFFIX": 4,
+        "DOMAIN-SUFFIX": 5,
         "DOMAIN-KEYWORD": 0,
         "DOMAIN-REGEX": 0
       },
@@ -612,9 +612,9 @@
     {
       "tag": "youtube",
       "path": "geosite/youtube.list",
-      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/7226545410c4dbb3854a5235803a26d86a298072/geo/geosite/classical/youtube.list",
+      "sourceURL": "https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/26cf4440307754d2c2f65cf2f0457c0ae814900f/geo/geosite/classical/youtube.list",
       "sourceSha256": "b50b8cabe440d8b3a4c0e7385e2a9ac59a77ba784a2e150f1d3aebd94790149f",
-      "sha256": "ab2271c82e8edaffdac912e35ac22ec480c295164b41b32e951c5aba04c3fc10",
+      "sha256": "5dcb45a1e0d9c7f115231b9dd7da64f96bdb30f6a86ab69cd078bfe5a66576e8",
       "sourceRules": 178,
       "sourceCounts": {
         "DOMAIN": 1,
