@@ -1,6 +1,6 @@
 # Rivo keyword / regex supplement; use with the matching MetaCubeX domain MRS.
-# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/2963a49408bbc37f2c2ffa6e8329fe11076a816b/geo/geosite/classical/openai.list
-# Modified: 2026-11-13T12:18:19.164Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
+# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/1127bb69cd31beba3d8fd851a9dba92e66eead42/geo/geosite/classical/openai.list
+# Modified: 2026-11-14T11:34:00.779Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
 # License: GPL-3.0; see LICENSE.MetaCubeX and SOURCES.md.
 # Rules: 1
 DOMAIN-REGEX,^chatgpt-async-webps-prod-\S+-\d+\.webpubsub\.azure\.com$
