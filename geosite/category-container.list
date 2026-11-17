@@ -1,6 +1,6 @@
 # Rivo keyword / regex supplement; use with the matching MetaCubeX domain MRS.
-# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/c50286e52b8f6497af083871747d4b49a4bb77a2/geo/geosite/classical/category-container.list
-# Modified: 2026-11-16T12:50:49.832Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
+# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/1916b151c3661fc74f709ac69c271ff9ae912027/geo/geosite/classical/category-container.list
+# Modified: 2026-11-17T13:32:44.846Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
 # License: GPL-3.0; see LICENSE.MetaCubeX and SOURCES.md.
 # Rules: 1
 DOMAIN-REGEX,.+\.dkr\.ecr\.[^\.]+\.amazonaws\.com$
