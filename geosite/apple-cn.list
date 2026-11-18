@@ -1,5 +1,5 @@
 # Rivo keyword / regex supplement; use with the matching MetaCubeX domain MRS.
-# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/1916b151c3661fc74f709ac69c271ff9ae912027/geo/geosite/classical/apple-cn.list
-# Modified: 2026-11-17T13:32:44.846Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
+# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/39ef714731b5523b471d6868f8e3e6e83d915611/geo/geosite/classical/apple-cn.list
+# Modified: 2026-11-18T13:08:51.921Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
 # License: GPL-3.0; see LICENSE.MetaCubeX and SOURCES.md.
 # Rules: 0

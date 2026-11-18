@@ -1,6 +1,6 @@
 # Rivo rule supplements
 
-Generated at 2026-11-17T13:32:44.846Z from [MetaCubeX/meta-rules-dat@1916b151c3661fc74f709ac69c271ff9ae912027](https://github.com/MetaCubeX/meta-rules-dat/commit/1916b151c3661fc74f709ac69c271ff9ae912027).
+Generated at 2026-11-18T13:08:51.921Z from [MetaCubeX/meta-rules-dat@39ef714731b5523b471d6868f8e3e6e83d915611](https://github.com/MetaCubeX/meta-rules-dat/commit/39ef714731b5523b471d6868f8e3e6e83d915611).
 
 32 files / 176 keyword and regex rules. Files with zero rules intentionally contain comments only. No advertising category is selected.
 
