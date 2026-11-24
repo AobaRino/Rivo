@@ -1,6 +1,6 @@
 # Rivo keyword / regex supplement; use with the matching MetaCubeX domain MRS.
-# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/13c258bce343dfc81d5600e535a59588386ef4b9/geo/geosite/classical/private.list
-# Modified: 2026-11-23T14:47:28.373Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
+# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/ce616601064422e7acfe75ea201549dc7372becf/geo/geosite/classical/private.list
+# Modified: 2026-11-24T14:56:51.777Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
 # License: GPL-3.0; see LICENSE.MetaCubeX and SOURCES.md.
 # Rules: 1
 DOMAIN-REGEX,^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$
