@@ -1,8 +1,8 @@
 # Rivo keyword / regex supplement; use with the matching MetaCubeX domain MRS.
-# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/69f94483c308940c277035c66eb78ff529efd977/geo/geosite/classical/category-games@cn.list
-# Modified: 2026-11-26T13:58:00.453Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
+# Source: https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/59032b3daac1d1a2643a77d6189c2a882900d54a/geo/geosite/classical/category-games@cn.list
+# Modified: 2026-11-27T13:56:40.008Z; kept DOMAIN-KEYWORD / DOMAIN-REGEX only.
 # License: GPL-3.0; see LICENSE.MetaCubeX and SOURCES.md.
 # Rules: 3
-DOMAIN-REGEX,^.+-mihayo\.akamaized\.net$
 DOMAIN-REGEX,^cdn\d-epicgames-\d+\.file\.myqcloud\.com$
 DOMAIN-REGEX,^epicgames-download\d-\d+\.file\.myqcloud\.com$
+DOMAIN-REGEX,^.+-mihayo\.akamaized\.net$
